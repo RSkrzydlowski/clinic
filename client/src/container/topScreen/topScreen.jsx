@@ -3,6 +3,8 @@ import './topScreen.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { AuthContext } from "../../authentication";
 
+import LoginPage from '../../pages/loginPage';
+
 const TopScreen = () => {
 	// const cu = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
 	// const { currentUser } = useContext(AuthContext);
@@ -11,7 +13,7 @@ const TopScreen = () => {
 			<div className="menubar_display">
 			</div>
 			<div className="top_display">
-
+				<Route path="/sign-in" component={LoginPage} />
 
 			</div>
 		</div>
