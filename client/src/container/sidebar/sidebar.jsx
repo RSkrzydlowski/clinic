@@ -10,11 +10,11 @@ const Sidebar = () => {
       ADMIN
     </Link>
   </div>)}
-  <Link to="/flashcards" className="link">
-    Test 1
+  <Link to="/my-account" className="link">
+    Moje konto
   </Link>
-  <Link to="/course" className="link">
-    Test 2
+  <Link to="/my-visit" className="link">
+    Moje wizyty
   </Link> </div>
 }
 
