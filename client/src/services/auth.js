@@ -1,6 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import React from 'react';
-const APP_URL = 'dsa';
+import { APP_URL } from '../data/constant';
+
 const signIn = async ({ email, password }) => {
 	const url = `${APP_URL}/api/users/login`;
 	fetch(url, {
