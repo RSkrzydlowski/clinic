@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+.main_div {
+	display: flex;
+	background-color: $blue;
+	color: $white;
+	// font-size: 50px;
+	// text-align: left;
+}
+
+.push {
+	margin-left: auto;
+}
+
+.app_title {
+	text-align: left;
+	font-size: 50px;
+}
+
+.register_button {
+	display: flex;
+	flex-direction: row;
+	font-size: 25px;
+}

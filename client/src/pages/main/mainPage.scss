@@ -1,0 +1,13 @@
+@import '../../styles/colors.scss';
+
+.main_div {
+	background-color: $blue;
+	color: $white;
+	font-size: 50px;
+	text-align: center;
+}
+
+.top {
+	display: flex;
+	flex-direction: row;
+}

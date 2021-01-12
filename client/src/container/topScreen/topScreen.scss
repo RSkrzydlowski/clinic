@@ -1,0 +1,25 @@
+@import '../../styles/colors.scss';
+// @import '../../../styles/themes.scss';
+
+.top_screen {
+	width: 90%;
+}
+
+.menubar_display {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 30px;
+	margin-top: 80px;
+	justify-content: center;
+}
+
+a {
+	height: 40px;
+	color: $white;
+	text-decoration: none;
+}
+
+.top_display {
+	min-height: 75vh;
+}
