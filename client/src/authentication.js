@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		authService.onAuthStateChanged(setCurrentUser);
-
+		console.log(currentUser);
 		async function initialize() {
 			const cu = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
 			console.log('init');
