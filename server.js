@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000; // Step 1
 
 const userController = require('./controllers/userController');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_youtube', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/clinic', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });

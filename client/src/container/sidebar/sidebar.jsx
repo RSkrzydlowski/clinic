@@ -5,7 +5,7 @@ import { AuthContext } from '../../authentication';
 
 const Sidebar = () => {
   const { currentUser } = useContext(AuthContext);
-  return <div>{currentUser ? (<div className="sidebar"> {currentUser && currentUser.role === 'admin' && (<div>
+  return <div className="sidebar"> {currentUser && currentUser.role === 'admin' && (<div>
     <Link to="/admin" className="link">
       ADMIN
     </Link>
@@ -15,7 +15,7 @@ const Sidebar = () => {
   </Link>
   <Link to="/course" className="link">
     Test 2
-  </Link> </div>) : null}</div>
+  </Link> </div>
 }
 
 export default Sidebar;
