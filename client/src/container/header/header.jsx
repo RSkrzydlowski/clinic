@@ -18,9 +18,9 @@ const Header = () => {
     		</Link>
   		</div>)}
 			{currentUser && (<div>
-    		<Link to="/sign-out">
-      		wyloguj się
-    		</Link>
+    		<Link to="/home" className="link">
+					<button onClick={() => authService.signOut()}>Wyloguj się</button>
+				</Link>
   		</div>)}
 		</div>
 	)
