@@ -33,7 +33,9 @@ router.post('/register', async (req, res) => {
 			user.email = email;
 			user.hashedPassword = hashedPassword;
 			user.salt = salt.toString('hex');
-
+			if (!(user.role === 'admin' || user.role === 'doctor')) {
+				user.role = 'user';
+			}
 			user.save((err) => {
 				if (err) return res.json({ success: false, error: err });
 				return res.json({ success: true });
