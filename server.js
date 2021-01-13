@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5000; // Step 1
 
 const userController = require('./controllers/userController');
+const visitController = require('./controllers/visitController');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/clinic', {
 	useNewUrlParser: true,
@@ -28,5 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(morgan('tiny'));
 app.use('/api/users', userController);
+app.use('/api/visits', visitController);
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
