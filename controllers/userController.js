@@ -11,6 +11,13 @@ router.get('/user-number', (req, res) => {
 	});
 });
 
+router.get('/doctors', (req, res) => {
+	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, data) => {
+		if (err) return res.json({ success: false, error: err });
+		return res.json({ success: true, data: data });
+	});
+});
+
 router.post('/register', async (req, res) => {
 	const { name, email, password } = req.body;
 	if (!name || !email || !password) {

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import './'
+import './myVisitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 
-const VisitPage = () => {
+const MyVisitPage = () => {
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
 
@@ -36,7 +36,10 @@ const VisitPage = () => {
 
   return (
     <div>
-      <p>Dostępni lekarze:</p>
+      <Link to="/visit">
+      		Umów wizytę
+    	</Link>
+      <p>Moje wizyty:</p>
 
       {doctorList && doctorItems}
       <select onChange={(e) => setVisitHour(e.target.value)} value={visitHour}>
@@ -46,4 +49,4 @@ const VisitPage = () => {
    );
 }
 
-export default VisitPage;
+export default MyVisitPage;
