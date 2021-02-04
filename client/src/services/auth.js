@@ -29,7 +29,7 @@ const signIn = async ({ email, password }) => {
 	});
 };
 const refresh = async (currentUser) => {
-	const res = await fetch('/api/users/refresh', {
+	const res = await fetch(`${APP_URL}/api/users/refresh`, {
 		headers: { Authorization: currentUser.bearer }
 	});
 	if (res.status === 401) {

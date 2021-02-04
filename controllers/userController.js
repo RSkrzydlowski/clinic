@@ -127,7 +127,7 @@ router.post('/adminLogin', async (req, res) => {
 
 router.get('/:id', (req, res) => {
 	const { id } = req.params;
-	User.findOne({ _id: id }, (err, data) => {
+	User.findOne({ _id: id }, '-salt -hashedPassword', (err, data) => {
 		if (err) return res.json({ success: false, error: err });
 		return res.json({ success: true, data: data });
 	});

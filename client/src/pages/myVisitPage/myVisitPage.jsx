@@ -23,8 +23,17 @@ const MyVisitPage = () => {
   }, []);
 
   const doctorItems = doctorList.map((data) => (
-    <p key={data.name}>{data.name}</p>
+    <option
+    key={data._id}
+    value={data.name}
+  >{data.name}</option>
   ))
+
+  const doctorParagraph = doctorList.map((data) =>
+    <Link key={data._id} to={`/doctor/${data._id}`}>
+      <p>{data.name}</p>
+    </Link>
+  )
 
   const items = VISIT_HOURS.map((data) =>
   (
@@ -40,8 +49,13 @@ const MyVisitPage = () => {
       		Umów wizytę
     	</Link>
       <p>Moje wizyty:</p>
+      {doctorList &&
+      (<select onChange={(e) => setVisitHour(e.target.value)} value={visitHour}>
+        {doctorItems}
+      </select>)
+      }
+      {doctorList && doctorParagraph}
 
-      {doctorList && doctorItems}
       <select onChange={(e) => setVisitHour(e.target.value)} value={visitHour}>
         {items}
       </select>

@@ -17,7 +17,7 @@ const TopScreen = () => {
 				<Route path="/sign-in" component={LoginPage} />
 				<Route path="/my-visit" component={MyVisitPage} />
 				<Route path="/visit" component={VisitPage} />
-				<Route path="/doctor" component={DoctorPage} />
+				<Route path="/doctor/:id" component={DoctorPage} />
 			</div>
 		</div>
 	);
