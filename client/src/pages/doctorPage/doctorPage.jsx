@@ -7,7 +7,7 @@ const DoctorPage = ({match}) => {
   const [doctor, setDoctor] = useState({})
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
-  
+
   useEffect(() => {
     const fetchDoctor = async() => {
       const url = `${APP_URL}/api/users/${id}`

@@ -15,7 +15,11 @@ const Sidebar = () => {
   </Link>
   <Link to="/my-visit" className="link">
     Moje wizyty
-  </Link> </div>
+  </Link>
+  <Link to="/doctor-list" className="link">
+    Lekarze
+  </Link>
+  </div>
 }
 
 export default Sidebar;
