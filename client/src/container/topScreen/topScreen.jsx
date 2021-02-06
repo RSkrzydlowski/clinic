@@ -3,7 +3,7 @@ import './topScreen.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { AuthContext } from "../../authentication";
 
-import { LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage } from '../../pages';
+import { LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage, DoctorListPage } from '../../pages';
 
 const TopScreen = () => {
 	// const cu = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
@@ -18,6 +18,7 @@ const TopScreen = () => {
 				<Route path="/my-visit" component={MyVisitPage} />
 				<Route path="/visit" component={VisitPage} />
 				<Route path="/doctor/:id" component={DoctorPage} />
+				<Route path="/doctor-list/" component={DoctorListPage} />
 			</div>
 		</div>
 	);
