@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './doctorListPage.scss';
 import { APP_URL } from '../../data/constant';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import DoctorElement from '../../components/doctorElement'
 
 const DoctorListPage = ({match}) => {
   const [doctorList, setDoctorList] = useState([])
@@ -23,14 +24,13 @@ const DoctorListPage = ({match}) => {
   console.log(doctorList)
 
   const doctorParagraph = doctorList.map((data) =>
-    <Link className="link_paragraph" key={data._id} to={`/doctor/${data._id}`}>
-      <p>{data.name}</p>
-    </Link>
+    <DoctorElement key={data._id} _id={data._id} name={data.name}/>
   )
 
 
   return (
     <div>
+      <p>Dostępni lekarze:</p>
       {doctorList && doctorParagraph}
     </div>
    );
