@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './doctorPage.scss';
 import { APP_URL } from '../../data/constant';
+import { CommentSection } from '../../components';
 
 const DoctorPage = ({match}) => {
   const id = match.params.id
@@ -38,10 +39,7 @@ const DoctorPage = ({match}) => {
           <p>Twoje wizyty:</p>
         </div>
       </div>
-      <div>
-        <p>Ocen:</p>
-        <textarea />
-      </div>
+     <CommentSection />
     </div>
    );
 }
