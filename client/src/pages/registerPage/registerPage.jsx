@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './registerPage.scss';
 import { APP_URL } from '../../data/constant'
-console.log(APP_URL)
+
 const RegisterPage = () => {
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');

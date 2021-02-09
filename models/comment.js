@@ -6,7 +6,8 @@ const CommentSchema = new Schema({
 	patient: { type: Schema.Types.ObjectId, ref: 'User' },
 	doctor: { type: Schema.Types.ObjectId, ref: 'User' },
 	comment: String,
-	rate: Number
+	rate: Number,
+	date: Number
 });
 
 CommentSchema.plugin(mongoosePaginate);

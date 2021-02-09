@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './doctorPage.scss';
 import { APP_URL } from '../../data/constant';
 import { CommentSection } from '../../components';
+import { AuthContext } from '../../authentication';
 
 const DoctorPage = ({match}) => {
   const id = match.params.id
+  const { currentUser } = useContext(AuthContext);
   const [doctor, setDoctor] = useState({})
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
@@ -39,7 +41,7 @@ const DoctorPage = ({match}) => {
           <p>Twoje wizyty:</p>
         </div>
       </div>
-     <CommentSection />
+     <CommentSection doctorId={id} patientId={currentUser.id}/>
     </div>
    );
 }

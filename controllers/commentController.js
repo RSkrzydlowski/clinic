@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Visit = require('../models/visit');
+const Comment = require('../models/visit');
 
 router.post('/add', (req, res) => {
-	const visit = new Visit();
-	const { date, patientId, doctorId } = req.body;
+	const commentObject = new Comment();
+	const { rate, comment, patientId, doctorId } = req.body;
 
 	if (!patientId || !doctorId) {
 		return res.json({
@@ -13,11 +13,13 @@ router.post('/add', (req, res) => {
 		});
 	}
 
-	visit.date = date;
-	visit.patient = patientId;
-	visit.doctor = doctorId;
+	commentObject.date = Date.now();
+	commentObject.patient = patientId;
+	commentObject.doctor = doctorId;
+	commentObject.rate = rate;
+	commentObject.comment = comment;
 
-	visit.save((err) => {
+	commentObject.save((err) => {
 		if (err) return res.json({ success: false, error: err });
 		return res.json({ success: true });
 	});
