@@ -25,10 +25,23 @@ const DoctorPage = ({match}) => {
 
   return (
     <div>
-      {doctor ? doctor.name : null}
-      <p>Ocena</p>
+      <div className="doctor_block">
+        <div>
+          photo
+        </div>
+        <div>
+          {doctor ? doctor.name : null}
+          <p>Ocena</p>
 
-      <p>Komentarze</p>
+          <p>Komentarze</p>
+
+          <p>Twoje wizyty:</p>
+        </div>
+      </div>
+      <div>
+        <p>Ocen:</p>
+        <textarea />
+      </div>
     </div>
    );
 }
