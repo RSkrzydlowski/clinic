@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './doctorListPage.scss';
 import { APP_URL } from '../../data/constant';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
-import DoctorElement from '../../components/doctorElement'
+import { DoctorElement } from '../../components'
 
 const DoctorListPage = ({match}) => {
   const [doctorList, setDoctorList] = useState([])
