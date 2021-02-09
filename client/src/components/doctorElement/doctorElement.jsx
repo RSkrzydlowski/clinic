@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import './doctorElement.scss';
+import LinkButton from '../linkButton';
 
 const DoctorElement = (props) => {
   return (
-    <div>
-      <p>{props.name}</p>
-      <Link className="link_paragraph" to={`/doctor/${props._id}`}>
-      <p>Zobacz</p>
-    </Link>
+    <div className="doctor_element_block">
+      <p className="doctor_name_paragraph">{props.name}</p>
+      <p></p>
+      <p>Ocena</p>
+      <LinkButton link={`/doctor/${props._id}`}/>
     </div>
    );
 }
