@@ -47,13 +47,12 @@ router.get('/:doctorId', (req, res) => {
 						returnItem.doctor = commentData[i].doctor;
 						returnItem.comment = commentData[i].comment;
 						returnItem.date = ConvertDate(commentData[i].date);
-						returnItem.rate = commentData[i].rate;
+						returnItem.rate = commentData[i].rate === undefined ? 0 : commentData[i].rate;
 						returnData.push(returnItem);
 						break;
 					}
 				}
 			}
-			console.log(returnData);
 			return res.json({ success: true, data: returnData });
 		});
 	});

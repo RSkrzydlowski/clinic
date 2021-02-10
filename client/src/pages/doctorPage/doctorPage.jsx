@@ -20,7 +20,6 @@ const DoctorPage = ({match}) => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data
-        console.log(data)
 				setDoctor(data)
 			});
 		});
@@ -49,8 +48,9 @@ const DoctorPage = ({match}) => {
   }
 
   const commentSection = doctorComments.map((data) =>
-    <CommentElement key={data._id} date={data.date} user={data.patient} comment={data.comment}/>
+    <CommentElement key={data._id} rate={data.rate} date={data.date} user={data.patient} comment={data.comment}/>
   )
+
 
   return (
     <div>

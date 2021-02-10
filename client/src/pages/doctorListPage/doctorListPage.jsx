@@ -13,7 +13,6 @@ const DoctorListPage = ({match}) => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data
-        console.log(data)
 				setDoctorList(data)
 			});
 		});
@@ -21,7 +20,6 @@ const DoctorListPage = ({match}) => {
   fetchDoctor();
   }, []);
 
-  console.log(doctorList)
 
   const doctorParagraph = doctorList.map((data) =>
     <DoctorElement key={data._id} _id={data._id} name={data.name}/>
