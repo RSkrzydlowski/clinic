@@ -1,5 +1,5 @@
 import LinkButton from './linkButton';
 import DoctorElement from './doctorElement';
-import CommentSection from './commentSection';
+import AddCommentSection from './addCommentSection';
 
-export { LinkButton, DoctorElement, CommentSection };
+export { LinkButton, DoctorElement, AddCommentSection };

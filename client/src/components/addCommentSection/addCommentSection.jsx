@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import './commentSection.scss';
+import './addCommentSection.scss';
 import { APP_URL } from '../../data/constant'
 
-const CommentSection = (props) => {
+const AddCommentSection = (props) => {
   const doctorId = props.doctorId
   const patientId = props.patientId
   const [comment, setComment] = useState('');
@@ -30,11 +30,11 @@ const CommentSection = (props) => {
   }
 
   return (
-    <div className="comment_section">
+    <div className="add_comment_section">
       <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Dodaj komentarz..." className="comment_textarea" />
       <button onClick={addComment}>Dodaj</button>
     </div>
    );
 }
 
-export default CommentSection;
+export default AddCommentSection;

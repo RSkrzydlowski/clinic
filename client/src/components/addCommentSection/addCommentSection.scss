@@ -1,4 +1,4 @@
-.comment_section {
+.add_comment_section {
 	// padding: 20px;
 	margin: 20px;
 	border: 1px solid black;
@@ -11,4 +11,9 @@
 
 textarea {
 	border-width: 0px;
+	resize: none;
+}
+
+textarea:focus {
+	outline: none;
 }
