@@ -8,7 +8,9 @@ const CommentElement = (props) => {
         <p>{props.user}</p>
         <p>{props.date}</p>
       </div>
-      <p>{props.comment}</p>
+      <div className="comment_element_block">
+        <p>{props.comment}</p>
+      </div>
     </div>
    );
 }

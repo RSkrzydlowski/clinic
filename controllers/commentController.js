@@ -3,6 +3,7 @@ const router = express.Router();
 const Comment = require('../models/comment');
 const User = require('../models/user');
 const ObjectId = require('mongoose').Types.ObjectId;
+const ConvertDate = require('../services/time');
 
 router.post('/add', (req, res) => {
 	const commentObject = new Comment();
@@ -45,7 +46,7 @@ router.get('/:doctorId', (req, res) => {
 						returnItem.patient = userData[j].name;
 						returnItem.doctor = commentData[i].doctor;
 						returnItem.comment = commentData[i].comment;
-						returnItem.date = commentData[i].date;
+						returnItem.date = ConvertDate(commentData[i].date);
 						returnItem.rate = commentData[i].rate;
 						returnData.push(returnItem);
 						break;

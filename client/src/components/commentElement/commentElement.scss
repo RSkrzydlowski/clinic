@@ -1,7 +1,14 @@
+.comment_element_block {
+	background-color: gray;
+	padding: 5px 5px 5px 20px;
+	min-height: 50px;
+}
+
 .comment_paragraph {
 	display: flex;
 	flex-direction: row;
 	align-content: left;
+	background-color: red;
 
 	p {
 		margin: 5px 5px 5px 20px;
