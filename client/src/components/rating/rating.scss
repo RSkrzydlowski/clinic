@@ -1,0 +1,51 @@
+.ratings {
+	background-color: #000;
+	&:hover .test {
+		color: #cc9900;
+	}
+
+	.test:hover ~ .test {
+		color: #fff;
+	}
+
+	.test:hover {
+		color: #cc9900;
+	}
+}
+
+.test {
+	color: #fff;
+}
+
+.rating_less {
+	color: #fff;
+}
+
+.rating_more {
+	color: #cc9900;
+}
+
+// .ratings,
+// .rating_more,
+// .rating_less {
+// 	cursor: pointer;
+// 	.rating_more,
+// 	.rating_less {
+// 		color: #fff;
+// 	}
+
+// 	&:hover .rating_more,
+// 	&:hover .rating_less {
+// 		color: #cc9900;
+// 	}
+
+// .rating_more:hover ~ .rating_more,
+// .rating_less:hover ~ .rating_less {
+// 	color: #fff;
+// }
+
+// .rating_more:hover,
+// .rating_less:hover {
+// 	color: #cc9900;
+// }
+// }

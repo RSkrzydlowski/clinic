@@ -1,5 +1,6 @@
 import React from 'react';
 import './commentElement.scss';
+import { Rating } from '../'
 
 const CommentElement = (props) => {
   return (
@@ -7,6 +8,7 @@ const CommentElement = (props) => {
       <div className="comment_paragraph">
         <p>{props.user}</p>
         <p>{props.date}</p>
+        <Rating />
       </div>
       <div className="comment_text">
         <p>{props.comment}</p>
