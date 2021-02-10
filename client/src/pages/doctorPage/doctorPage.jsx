@@ -8,8 +8,10 @@ const DoctorPage = ({match}) => {
   const id = match.params.id
   const { currentUser } = useContext(AuthContext);
   const [doctor, setDoctor] = useState({})
+  const [doctorComments, setDoctorComments] = useState([]);
   const [visitHour, setVisitHour] = useState('');
-  const [doctorList, setDoctorList] = useState([]);
+  // const [doctorList, setDoctorList] = useState([]);
+
 
   useEffect(() => {
     const fetchDoctor = async() => {
@@ -23,7 +25,21 @@ const DoctorPage = ({match}) => {
 			});
 		});
 	}
+
+  const fetchDoctorComments = async() => {
+    const url = `${APP_URL}/api/comments/${id}`
+
+    await fetch(url).then(async res => {
+    res.json().then(res => {
+      const data = res.data
+      console.log(data)
+      setDoctorComments(data)
+    });
+  });
+}
+
   fetchDoctor();
+  fetchDoctorComments();
   }, []);
 
   return (
