@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './doctorPage.scss';
 import { APP_URL } from '../../data/constant';
-import { AddCommentSection } from '../../components';
+import { AddCommentSection, CommentElement } from '../../components';
 import { AuthContext } from '../../authentication';
 
 const DoctorPage = ({match}) => {
@@ -42,6 +42,10 @@ const DoctorPage = ({match}) => {
   fetchDoctorComments();
   }, []);
 
+  const commentSection = doctorComments.map((data) =>
+    <CommentElement key={data._id} date={data.date} user={data.patient} comment={data.comment}/>
+  )
+
   return (
     <div>
       <div className="doctor_block">
@@ -58,6 +62,7 @@ const DoctorPage = ({match}) => {
         </div>
       </div>
      <AddCommentSection doctorId={id} patientId={currentUser.id}/>
+     {doctorComments && commentSection}
     </div>
    );
 }
