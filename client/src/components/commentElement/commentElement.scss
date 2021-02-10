@@ -1,0 +1,9 @@
+.comment_paragraph {
+	display: flex;
+	flex-direction: row;
+	align-content: left;
+
+	p {
+		margin: 5px 5px 5px 20px;
+	}
+}

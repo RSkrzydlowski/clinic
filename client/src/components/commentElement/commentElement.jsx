@@ -4,8 +4,10 @@ import './commentElement.scss';
 const CommentElement = (props) => {
   return (
     <div>
-      <p>{props.user}</p>
-      <p>{props.date}</p>
+      <div className="comment_paragraph">
+        <p>{props.user}</p>
+        <p>{props.date}</p>
+      </div>
       <p>{props.comment}</p>
     </div>
    );
