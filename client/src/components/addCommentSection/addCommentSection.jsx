@@ -23,6 +23,7 @@ const AddCommentSection = (props) => {
         if (!success) {
           alert(error);
         } else {
+          props.changeCounter()
           setComment('')
         }
       })

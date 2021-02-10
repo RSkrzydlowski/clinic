@@ -8,7 +8,7 @@ const DoctorPage = ({match}) => {
   const id = match.params.id
   const { currentUser } = useContext(AuthContext);
   const [doctor, setDoctor] = useState({})
-
+  const [counter, setCounter] = useState(0)
   const [doctorComments, setDoctorComments] = useState([]);
   const [visitHour, setVisitHour] = useState('');
 
@@ -26,21 +26,27 @@ const DoctorPage = ({match}) => {
 		});
 	}
 
+  fetchDoctor();
+  }, []);
+
+  useEffect(() => {
   const fetchDoctorComments = async() => {
     const url = `${APP_URL}/api/comments/${id}`
 
     await fetch(url).then(async res => {
     res.json().then(res => {
       const data = res.data
-      console.log(data)
       setDoctorComments(data)
     });
   });
 }
 
-  fetchDoctor();
   fetchDoctorComments();
-  }, []);
+  }, [counter]);
+
+  const changeCounter = () => {
+    setCounter(counter + 1)
+  }
 
   const commentSection = doctorComments.map((data) =>
     <CommentElement key={data._id} date={data.date} user={data.patient} comment={data.comment}/>
@@ -61,7 +67,7 @@ const DoctorPage = ({match}) => {
           <p>Twoje wizyty:</p>
         </div>
       </div>
-     <AddCommentSection doctorId={id} patientId={currentUser.id}/>
+     <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
      {doctorComments && commentSection}
     </div>
    );
