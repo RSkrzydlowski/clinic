@@ -2,6 +2,34 @@
 	width: 100%;
 	height: 100px;
 	display: grid;
-	grid-template-columns: 10% 10%;
+	grid-template-columns: 10% 10% 10%;
 	padding: 10px;
+}
+
+.rating_statics_block {
+	display: flex;
+	flex-direction: column;
+}
+
+.golden_star {
+	color: #cc9900;
+}
+
+.bar {
+	background-color: gray;
+	height: 21px;
+}
+
+.element {
+	width: auto;
+	padding: 5px;
+	margin: 0px;
+	align-items: left;
+	display: flex;
+	flex-direction: row;
+
+	* {
+		padding: 0px;
+		margin: 0px;
+	}
 }
