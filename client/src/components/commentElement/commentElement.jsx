@@ -8,7 +8,7 @@ const CommentElement = (props) => {
       <div className="comment_paragraph">
         <p>{props.user}</p>
         <p>{props.date}</p>
-        <Rating />
+        <Rating rate={props.rate} commentType="ratings" />
       </div>
       <div className="comment_text">
         <p>{props.comment}</p>

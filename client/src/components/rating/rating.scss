@@ -1,20 +1,23 @@
-.ratings {
-	background-color: #000;
-	&:hover .test {
+.ratings_add {
+	&:hover .rating_less,
+	&:hover .rating_more,
+	&:hover .no_rate {
+		cursor: pointer;
+	}
+
+	&:hover .no_rate {
 		color: #cc9900;
 	}
 
-	.test:hover ~ .test {
+	.no_rate:hover ~ .no_rate {
+		cursor: pointer;
 		color: #fff;
 	}
 
-	.test:hover {
+	.no_rate:hover {
+		cursor: pointer;
 		color: #cc9900;
 	}
-}
-
-.test {
-	color: #fff;
 }
 
 .rating_less {
@@ -24,28 +27,3 @@
 .rating_more {
 	color: #cc9900;
 }
-
-// .ratings,
-// .rating_more,
-// .rating_less {
-// 	cursor: pointer;
-// 	.rating_more,
-// 	.rating_less {
-// 		color: #fff;
-// 	}
-
-// 	&:hover .rating_more,
-// 	&:hover .rating_less {
-// 		color: #cc9900;
-// 	}
-
-// .rating_more:hover ~ .rating_more,
-// .rating_less:hover ~ .rating_less {
-// 	color: #fff;
-// }
-
-// .rating_more:hover,
-// .rating_less:hover {
-// 	color: #cc9900;
-// }
-// }

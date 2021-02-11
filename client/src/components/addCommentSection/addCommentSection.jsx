@@ -6,20 +6,23 @@ import Rating from '../rating'
 const AddCommentSection = (props) => {
   const doctorId = props.doctorId
   const patientId = props.patientId
+  const [style, setStyle] = useState('ratings_add');
   const [comment, setComment] = useState('');
+  const [commentStatus, setCommentStatus] = useState('');
   const [rate, setRate] = useState(0);
   const [value, setValue] = useState('');
 
   const addComment = () => {
     const url = `${APP_URL}/api/comments/add`
-    if(comment) {
+    if(comment || rate) {
       fetch(url, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           comment,
           doctorId,
-          patientId
+          patientId,
+          rate
         })
       }).then(async res => {
         const { success, error } = await res.json();
@@ -34,17 +37,15 @@ const AddCommentSection = (props) => {
   }
 
   const changeRate = (rate) => {
-    console.log(rate)
-    // setRate(rate)
+    setCommentStatus('added')
+    setRate(rate)
   }
-
-  console.log("rate", rate)
 
   return (
     <div className="add_comment_section">
       <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Dodaj komentarz..." className="comment_textarea" />
       <button onClick={addComment}>Dodaj</button>
-      <Rating changeRate={changeRate} />
+      <Rating commentStatus={commentStatus} commentType={style} changeRate={changeRate} />
     </div>
    );
 }
