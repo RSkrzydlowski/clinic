@@ -72,17 +72,14 @@ const DoctorPage = ({match}) => {
 
 
   return (
-    <div>
-      <div className="doctor_block">
+    <div className="doctor_block">
+      <div className="doctor_information_block">
         <div>
           photo
         </div>
         <div>
           {doctor ? doctor.name : null}
           <p>Ocena</p>
-
-
-
           <p>Twoje wizyty:</p>
         </div>
         <div>
@@ -94,14 +91,14 @@ const DoctorPage = ({match}) => {
             <div className="element">2 <FontAwesomeIcon className="golden_star" icon={faStar} /> <div className="bar" style={{width: stars[1]}}></div></div>
             <div className="element">1 <FontAwesomeIcon className="golden_star" icon={faStar} /> <div className="bar" style={{width: stars[0]}}></div></div>
           </div>
-
         </div>
       </div>
-      <p>Komentarze ({comments.length})</p>
-     <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
-     {doctorComments && commentSection}
+      <p className="comment_information">Komentarze ({comments.length})</p>
+      <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
+      {doctorComments && commentSection}
     </div>
    );
 }
 
 export default DoctorPage;
+

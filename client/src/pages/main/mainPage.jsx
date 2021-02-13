@@ -12,11 +12,13 @@ const MainPage = () => {
 	return ( <BrowserRouter>
 		<React.Fragment>
 			<Header />
+			{currentUser && <Sidebar />}
+			<TopScreen />
 			<div className="top">
-				{currentUser && <Sidebar />}
-				<TopScreen />
+
+
 			</div>
-			<Footer />
+
 		</React.Fragment>
 	</BrowserRouter> );
 }
