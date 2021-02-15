@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
+import { DoctorVisitElement } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -28,7 +29,7 @@ const VisitPage = () => {
   }, [dateInMilliseconds]);
 
   const doctorItems = doctorList.map((data) => (
-    <p key={data.name}>{data.name}</p>
+    <DoctorVisitElement key={data._id} name={data.doctor} hours={VISIT_HOURS}/>
   ))
 
   const items = VISIT_HOURS.map((data) =>

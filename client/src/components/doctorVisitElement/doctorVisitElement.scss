@@ -1,34 +1,14 @@
-.doctor_element_block {
+.doctor_visit_element_block {
 	width: 100%;
-	height: 100px;
-	display: grid;
-	grid-template-columns: 50% 50%;
+	display: flex;
+	flex-direction: row;
 	padding: 10px;
 }
 
-.doctor_element_block:nth-child(even) {
+.doctor_visit_element_block:nth-child(even) {
 	background-color: #fff;
 }
 
-.doctor_element_block:nth-child(odd) {
+.doctor_visit_element_block:nth-child(odd) {
 	background-color: #a2b6ca;
-}
-
-.doctor_name_paragraph {
-	font-size: 20px;
-	text-align: left;
-}
-
-.doctor_element_block > * {
-	height: 100%;
-	line-height: 50px;
-}
-
-.doctor_element_block > p {
-	text-align: left;
-	margin: 0px;
-}
-
-.doctor_element_block > a {
-	text-align: center;
 }
