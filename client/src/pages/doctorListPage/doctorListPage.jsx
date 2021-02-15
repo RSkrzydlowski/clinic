@@ -21,8 +21,10 @@ const DoctorListPage = ({match}) => {
   }, []);
 
 
+  console.log(doctorList)
+
   const doctorParagraph = doctorList.map((data) =>
-    <DoctorElement key={data._id} _id={data._id} name={data.name}/>
+    <DoctorElement key={data._id} _id={data._id} name={data.name} rate={data.rate}/>
   )
 
 

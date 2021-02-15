@@ -3,6 +3,8 @@ const router = express.Router();
 const argon2 = require('argon2');
 const crypto = require('crypto');
 const User = require('../models/user');
+const ObjectId = require('mongoose').Types.ObjectId;
+const Comment = require('../models/comment');
 
 router.get('/user-number', (req, res) => {
 	User.countDocuments((err, data) => {
@@ -12,9 +14,51 @@ router.get('/user-number', (req, res) => {
 });
 
 router.get('/doctors', (req, res) => {
-	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, data) => {
+	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, doctorData) => {
 		if (err) return res.json({ success: false, error: err });
-		return res.json({ success: true, data: data });
+		const doctorArray = [];
+		for (let i = 0; i < doctorData.length; i++) {
+			doctorArray.push(ObjectId(doctorData[i]._id));
+		}
+		console.log(doctorArray);
+		Comment.aggregate(
+			[
+				{
+					$match: {
+						doctor: { $in: doctorArray },
+						rate: { $gt: 0 }
+					}
+				},
+				{ $group: { _id: '$doctor', rate: { $sum: '$rate' }, rateNumber: { $sum: 1 } } }
+			],
+			(err, commentData) => {
+				if (err) return res.json({ success: false, error: err });
+				console.table(commentData);
+				const returnData = [];
+				for (let i = 0; i < doctorData.length; i++) {
+					let flag = false;
+					for (let j = 0; j < commentData.length; j++) {
+						if (commentData[j]._id.equals(doctorData[i]._id)) {
+							flag = true;
+							const returnItem = {};
+							returnItem._id = doctorData[i]._id;
+							returnItem.name = doctorData[i].name;
+							returnItem.rate = commentData[j].rate / commentData[j].rateNumber;
+							returnData.push(returnItem);
+							break;
+						}
+					}
+					if (!flag) {
+						const returnItem = {};
+						returnItem._id = doctorData[i]._id;
+						returnItem.name = doctorData[i].name;
+						returnItem.rate = 'brak oceny';
+						returnData.push(returnItem);
+					}
+				}
+				return res.json({ success: true, data: returnData });
+			}
+		);
 	});
 });
 
