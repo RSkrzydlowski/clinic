@@ -3,7 +3,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const Schema = mongoose.Schema;
 
 const VisitSchema = new Schema({
-	date: String,
+	date: Number,
 	patient: { type: Schema.Types.ObjectId, ref: 'User' },
 	doctor: { type: Schema.Types.ObjectId, ref: 'User' }
 });

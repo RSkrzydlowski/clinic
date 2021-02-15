@@ -5,6 +5,7 @@ import { AddCommentSection, CommentElement } from '../../components';
 import { AuthContext } from '../../authentication';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 const DoctorPage = ({match}) => {
   const id = match.params.id
@@ -93,6 +94,9 @@ const DoctorPage = ({match}) => {
           </div>
         </div>
       </div>
+      <Link to={`/visit/${id}`}>
+      		Umów wizytę
+    	</Link>
       <p className="comment_information">Komentarze ({comments.length})</p>
       <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
       {doctorComments && commentSection}

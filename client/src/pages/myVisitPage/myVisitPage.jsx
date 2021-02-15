@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './myVisitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../authentication';
 
 
 const MyVisitPage = () => {
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
+  const [visitList, setVisitList] = useState([]);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    const getData = async() => {
+    const fetchDoctorData = async() => {
       const url = `${APP_URL}/api/users/doctors`
 
 			await fetch(url).then(async res => {
@@ -18,8 +21,22 @@ const MyVisitPage = () => {
 				setDoctorList(data)
 			});
 		});
+
+
 	}
-		getData();
+
+  const fetchUserVisits = async() => {
+    const url = `${APP_URL}/api/visits/${currentUser.id}`
+
+    await fetch(url).then(async res => {
+    res.json().then(res => {
+      const data = res.data.slice()
+      setVisitList(data)
+    });
+  });
+  }
+  fetchDoctorData();
+  fetchUserVisits();
   }, []);
 
   const doctorItems = doctorList.map((data) => (
@@ -33,6 +50,10 @@ const MyVisitPage = () => {
     <Link key={data._id} to={`/doctor/${data._id}`}>
       <p>{data.name}</p>
     </Link>
+  )
+
+  const visitComponent = visitList.map((data) =>
+      <p key={data._id}>{data.name}</p>
   )
 
   const items = VISIT_HOURS.map((data) =>
@@ -49,16 +70,7 @@ const MyVisitPage = () => {
       		Umów wizytę
     	</Link>
       <p>Moje wizyty:</p>
-      {doctorList &&
-      (<select onChange={(e) => setVisitHour(e.target.value)} value={visitHour}>
-        {doctorItems}
-      </select>)
-      }
-      {doctorList && doctorParagraph}
-
-      <select onChange={(e) => setVisitHour(e.target.value)} value={visitHour}>
-        {items}
-      </select>
+      {visitList && visitComponent}
     </div>
    );
 }

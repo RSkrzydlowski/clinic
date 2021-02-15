@@ -1,3 +1,5 @@
+const generateTime = require('./generateTime');
+
 const convertDate = (time) => {
 	if (!time) {
 		return 'Nigdy';
@@ -11,13 +13,6 @@ const convertDate = (time) => {
 	const second = generateTime(date.getSeconds());
 	const dateToDisplay = day + '.' + month + '.' + year + ' ' + hour + ':' + minute + ':' + second;
 	return dateToDisplay;
-};
-
-const generateTime = (time) => {
-	if (time < 10) {
-		time = '0' + time;
-	}
-	return time;
 };
 
 module.exports = convertDate;
