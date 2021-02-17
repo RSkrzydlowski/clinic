@@ -29,7 +29,7 @@ const VisitPage = () => {
   }, [dateInMilliseconds]);
 
   const doctorItems = doctorList.map((data) => (
-    <DoctorVisitElement key={data._id} name={data.doctor} hours={VISIT_HOURS}/>
+    <DoctorVisitElement key={data._id} name={data.name} hours={data.visit}/>
   ))
 
   const items = VISIT_HOURS.map((data) =>

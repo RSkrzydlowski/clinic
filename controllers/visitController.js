@@ -1,5 +1,7 @@
 const express = require('express');
+const visitHour = require('../constant/visitHour');
 const router = express.Router();
+const User = require('../models/user');
 const Visit = require('../models/visit');
 const convertHour = require('../services/hour');
 
@@ -48,18 +50,29 @@ router.get('/available-visit/:date', (req, res) => {
 			error: 'Please provide all data'
 		});
 	}
-
-	Visit.find({ date: { $gt: date, $lt: date + 86400000 } }, (err, data) => {
-		if (err) return res.json({ success: false, error: err });
+	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, doctorData) => {
 		const returnData = [];
-		data.forEach((item, index) => {
+		doctorData.forEach((item, index) => {
 			const returnItem = {};
 			returnItem._id = item._id;
-			returnItem.doctor = item.doctor;
-			returnItem.time = convertHour(item.date);
+			returnItem.name = item.name;
+			returnItem.visit = [ ...visitHour ];
 			returnData.push(returnItem);
 		});
-		return res.json({ success: true, data: returnData });
+		Visit.find({ date: { $gt: date, $lt: date + 86400000 } }, (err, visitData) => {
+			if (err) return res.json({ success: false, error: err });
+
+			visitData.forEach((item, index) => {
+				const doctorItem = returnData.filter((data) => data._id.equals(item.doctor));
+				console.log(doctorItem[0]);
+				console.log(doctorItem[0].visit);
+				doctorItem[0].visit = doctorItem[0].visit.filter(
+					(data) => convertHour(item.date) !== data.split(' - ')[0]
+				);
+			});
+			console.table(returnData);
+			return res.json({ success: true, data: returnData });
+		});
 	});
 });
 
