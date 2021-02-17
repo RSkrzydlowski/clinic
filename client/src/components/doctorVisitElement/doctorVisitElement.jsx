@@ -15,8 +15,8 @@ const DoctorVisitElement = (props) => {
       <p className="doctor_name_paragraph">{props.name}</p>
       <p>Ocena: {props.rate}</p>
       <select>
-          {items}
-        </select>
+        {items}
+      </select>
     </div>
    );
 }
