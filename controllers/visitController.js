@@ -8,7 +8,6 @@ const convertHour = require('../services/hour');
 router.post('/add', (req, res) => {
 	const visit = new Visit();
 	const { date, patientId, doctorId } = req.body;
-
 	if (!patientId || !doctorId) {
 		return res.json({
 			success: false,

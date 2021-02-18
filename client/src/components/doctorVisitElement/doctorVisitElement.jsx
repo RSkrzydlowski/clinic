@@ -1,22 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './doctorVisitElement.scss';
+import {VISIT_HOURS} from '../../data/constant'
 
 const DoctorVisitElement = (props) => {
-
-  const items = props.hours.map((data) =>
+  const hours = props.hours;
+  const doctorName = props.name;
+  const doctorId = props.doctorId;
+  const [hourValue, setHourValue] = useState(hours[0])
+  const items = hours.map((data) =>
   (
   <option
     key={data}
     value={data}
   >{data}</option>
   ))
+
+  const changeVisitData = () => {
+    const data = {
+      visitHour: hourValue,
+      doctorName,
+      doctorId
+    }
+    props.changeData(data)
+  }
+
+
   return (
     <div className="doctor_visit_element_block">
-      <p className="doctor_name_paragraph">{props.name}</p>
+      <p className="doctor_name_paragraph">{doctorName}</p>
       <p>Ocena: {props.rate}</p>
-      <select>
+      <select onChange={(e) => setHourValue(e.target.value)} value={hourValue}>
         {items}
       </select>
+      <button onClick={changeVisitData}>Wybierz</button>
     </div>
    );
 }
