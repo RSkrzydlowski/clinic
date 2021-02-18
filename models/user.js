@@ -7,7 +7,8 @@ const UserSchema = new Schema({
 	email: String,
 	salt: String,
 	hashedPassword: String,
-	role: String
+	role: String,
+	activate: Boolean
 });
 
 UserSchema.plugin(mongoosePaginate);

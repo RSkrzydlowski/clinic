@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const User = require('../models/user');
 const ObjectId = require('mongoose').Types.ObjectId;
 const Comment = require('../models/comment');
+const nodemailer = require('nodemailer');
+const address = process.env.MONGODB_URI || 'http://localhost:5000';
 
 router.get('/user-number', (req, res) => {
 	User.countDocuments((err, data) => {
@@ -87,9 +89,36 @@ router.post('/register', async (req, res) => {
 			if (!(user.role === 'admin' || user.role === 'doctor')) {
 				user.role = 'user';
 			}
+
 			user.save((err) => {
 				if (err) return res.json({ success: false, error: err });
-				return res.json({ success: true });
+				User.findOne({ email: email }, '-salt -hashedPassword', async (err, u) => {
+					const transporter = nodemailer.createTransport({
+						service: 'gmail',
+						auth: {
+							user: process.env.EMAIL_ADDRESS,
+							pass: process.env.EMAIL_PASSWORD
+						}
+					});
+
+					const mailOptions = {
+						from: process.env.EMAIL_ADDRESS,
+						to: email,
+						subject: 'Activate account',
+						html: `<h1>Hello ${u.name}</h1>
+					<p>To complete the account registration, just click on this <a href=${address}/users/activate/${u._id}>link</a></p>`
+					};
+
+					transporter.sendMail(mailOptions, function(error, info) {
+						if (error) {
+							console.log(error);
+						} else {
+							console.log('Email sent: ' + info.response);
+						}
+					});
+
+					return res.json({ success: true });
+				});
 			});
 		}
 	});
@@ -129,6 +158,17 @@ router.post('/login', async (req, res) => {
 		} else {
 			return res.json({ success: false, error: 'Incorrect email or password' });
 		}
+	});
+});
+
+router.get('/activate/:id', async (req, res) => {
+	console.log('eluwina');
+	const { id } = req.params;
+	const item = {};
+	item.activate = true;
+	User.findByIdAndUpdate({ _id: id }, item, (err) => {
+		// if (err) return res.json({ success: false, error: err });
+		// return res.json({ success: true });
 	});
 });
 
