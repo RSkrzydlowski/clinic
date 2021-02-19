@@ -33,15 +33,15 @@ const RegisterPage = () => {
     <form className="register_form">
       <p>
         Nazwa:
-        <input onChange={(e) => setName(e.target.value)} type="text" name="name" />
+        <input onChange={(e) => setName(e.target.value)} type="text" />
       </p>
       <p>
         Email:
-        <input onChange={(e) => setEmail(e.target.value)} type="email" name="name" />
+        <input onChange={(e) => setEmail(e.target.value)} type="email" />
       </p>
       <p>
         Hasło:
-        <input onChange={(e) => setPassword(e.target.value)} type="password" name="name" />
+        <input onChange={(e) => setPassword(e.target.value)} type="password" />
       </p>
       <button onClick={save}>Zarejestruj</button>
     </form>
