@@ -84,6 +84,7 @@ router.post('/register', async (req, res) => {
 
 			user.name = name;
 			user.email = email;
+			user.activate = false;
 			user.hashedPassword = hashedPassword;
 			user.salt = salt.toString('hex');
 			if (!(user.role === 'admin' || user.role === 'doctor')) {
@@ -131,24 +132,31 @@ router.post('/login', async (req, res) => {
 		if (user) {
 			const correctPassword = await argon2.verify(user.hashedPassword, password);
 			if (correctPassword) {
-				return res.json({
-					success: true,
-					id: user._id,
-					name: user.name,
-					role: user.role,
-					email: user.email
-					// token: jwt.sign(
-					// 	{
-					// 		_id: user._id,
-					// 		email: user.email,
-					// 		role: user.role
-					// 	},
-					// 	signature,
-					// 	{
-					// 		expiresIn: expiration
-					// 	}
-					// )
-				});
+				if (user.activate) {
+					return res.json({
+						success: true,
+						id: user._id,
+						name: user.name,
+						role: user.role,
+						email: user.email
+						// token: jwt.sign(
+						// 	{
+						// 		_id: user._id,
+						// 		email: user.email,
+						// 		role: user.role
+						// 	},
+						// 	signature,
+						// 	{
+						// 		expiresIn: expiration
+						// 	}
+						// )
+					});
+				} else {
+					return res.json({
+						success: false,
+						error: 'Account is not activate'
+					});
+				}
 			} else {
 				return res.json({
 					success: false,
