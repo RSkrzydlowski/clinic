@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { AuthContext } from "../../authentication";
 
 import Footer from '../../container/footer';
-import { LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage, DoctorListPage, ActivatePage } from '../../pages';
+import { LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage, DoctorListPage, ActivatePage, MyAccountPage } from '../../pages';
 
 const TopScreen = () => {
 	// const cu = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
@@ -20,6 +20,7 @@ const TopScreen = () => {
 				<Route path="/doctor-list/" component={DoctorListPage} />
 				<Route path="/doctor-list/" component={DoctorListPage} />
 				<Route path="/activate/:id" component={ActivatePage} />
+				<Route path="/my-account" component={ActivatePage} />
 			</div>
 			<Footer />
 			</div>

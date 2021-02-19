@@ -6,5 +6,16 @@ import MyVisitPage from './myVisitPage';
 import DoctorPage from './doctorPage';
 import DoctorListPage from './doctorListPage';
 import ActivatePage from './activatePage';
+import MyAccountPage from './myAccountPage';
 
-export { MainPage, LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage, DoctorListPage, ActivatePage };
+export {
+	MainPage,
+	LoginPage,
+	RegisterPage,
+	VisitPage,
+	MyVisitPage,
+	DoctorPage,
+	DoctorListPage,
+	ActivatePage,
+	MyAccountPage
+};
