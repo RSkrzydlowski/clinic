@@ -7,8 +7,6 @@ import Footer from '../../container/footer';
 import { LoginPage, RegisterPage, VisitPage, MyVisitPage, DoctorPage, DoctorListPage, ActivatePage, MyAccountPage } from '../../pages';
 
 const TopScreen = () => {
-	// const cu = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-	// const { currentUser } = useContext(AuthContext);
 	return (
 		<div className="top">
 			<div className="top_display">
@@ -18,9 +16,8 @@ const TopScreen = () => {
 				<Route path="/visit" component={VisitPage} />
 				<Route path="/doctor/:id" component={DoctorPage} />
 				<Route path="/doctor-list/" component={DoctorListPage} />
-				<Route path="/doctor-list/" component={DoctorListPage} />
 				<Route path="/activate/:id" component={ActivatePage} />
-				<Route path="/my-account" component={ActivatePage} />
+				<Route path="/my-account" component={MyAccountPage} />
 			</div>
 			<Footer />
 			</div>

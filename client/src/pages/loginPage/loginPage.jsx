@@ -7,28 +7,6 @@ const LoginPage = ({history}) => {
   const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 
-  // const login = () => {
-  //   const url = `${APP_URL}/api/users/login`
-  //   if(name && email && password) {
-  //     fetch(url, {
-  //       method: "post",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         email,
-  //         password
-  //       })
-  //     }).then(async res => {
-  //       const { success, error } = await res.json();
-  //       if (!success) {
-  //         alert(error);
-  //       } else {
-  //         history.push("/users");
-  //       }
-  //     });
-  //   }
-
-  // };
-
 
   return (
     <form className="login_form">
@@ -40,13 +18,13 @@ const LoginPage = ({history}) => {
         Hasło:
         <input onChange={(e) => setPassword(e.target.value)} type="password" name="name" />
       </p>
+      <p>Reset hasła</p>
       <button onClick={async ev => {
               ev.preventDefault();
               await authService.signIn({
                 email: email,
                 password: password
               });
-              history.push("/home");
             }}>Zaloguj</button>
     </form>
    );

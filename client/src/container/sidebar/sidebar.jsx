@@ -16,6 +16,9 @@ const Sidebar = () => {
   <Link to="/my-visit" className="link">
     Moje wizyty
   </Link>
+  <Link to="/visit" className="link">
+    Umów wizytę
+  </Link>
   <Link to="/doctor-list" className="link">
     Lekarze
   </Link>
