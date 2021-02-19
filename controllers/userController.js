@@ -6,7 +6,7 @@ const User = require('../models/user');
 const ObjectId = require('mongoose').Types.ObjectId;
 const Comment = require('../models/comment');
 const nodemailer = require('nodemailer');
-const address = process.env.MONGODB_URI || 'http://localhost:5000';
+const address = process.env.APP_URL || 'http://localhost:3000';
 
 router.get('/user-number', (req, res) => {
 	User.countDocuments((err, data) => {
@@ -101,13 +101,14 @@ router.post('/register', async (req, res) => {
 							pass: process.env.EMAIL_PASSWORD
 						}
 					});
+					console.log(address);
 
 					const mailOptions = {
 						from: process.env.EMAIL_ADDRESS,
 						to: email,
 						subject: 'Activate account',
-						html: `<h1>Hello ${u.name}</h1>
-					<p>To complete the account registration, just click on this <a href=${address}/users/activate/${u._id}>link</a></p>`
+						html: `<h1>Hi ${u.name}</h1>
+					<p>To complete the account registration, just click on this <a href=${address}/activate/${u._id}>link</a></p>`
 					};
 
 					transporter.sendMail(mailOptions, function(error, info) {
@@ -170,13 +171,17 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/activate/:id', async (req, res) => {
-	console.log('eluwina');
 	const { id } = req.params;
 	const item = {};
 	item.activate = true;
-	User.findByIdAndUpdate({ _id: id }, item, (err) => {
-		// if (err) return res.json({ success: false, error: err });
-		// return res.json({ success: true });
+	User.findOne({ _id: id }, (err, user) => {
+		if (user.activate) {
+			return res.json({ success: false, message: 'To konto jest już aktywne' });
+		}
+		User.findByIdAndUpdate({ _id: id }, item, (err) => {
+			if (err) return res.json({ success: false, error: err });
+			return res.json({ success: true, message: 'Konto zostało aktywowane' });
+		});
 	});
 });
 
