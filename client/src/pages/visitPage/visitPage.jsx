@@ -20,11 +20,9 @@ const VisitPage = () => {
   useEffect(() => {
     const fetchAvailableDoctor = async() => {
       const url = `${APP_URL}/api/visits/available-visit/${dateInMilliseconds}`
-
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data.slice()
-        console.log(data)
 				setDoctorList(data)
 			});
 		});
