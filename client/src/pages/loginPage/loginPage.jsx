@@ -3,7 +3,7 @@ import authService from "../../services/auth";
 import './loginPage.scss';
 // import { APP_URL } from '../../data/constant'
 
-const LoginPage = () => {
+const LoginPage = ({history}) => {
   const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 
@@ -46,6 +46,7 @@ const LoginPage = () => {
                 email: email,
                 password: password
               });
+              history.push("/home");
             }}>Zaloguj</button>
     </form>
    );
