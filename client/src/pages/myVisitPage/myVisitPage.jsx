@@ -31,6 +31,7 @@ const MyVisitPage = () => {
     await fetch(url).then(async res => {
     res.json().then(res => {
       const data = res.data.slice()
+      console.log(data)
       setVisitList(data)
     });
   });

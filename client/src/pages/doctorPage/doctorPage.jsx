@@ -6,6 +6,7 @@ import { AuthContext } from '../../authentication';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import timeService from '../../services/time'
 
 const DoctorPage = ({match}) => {
   const id = match.params.id
@@ -68,7 +69,7 @@ const DoctorPage = ({match}) => {
 
   console.table(stars)
   const commentSection = comments.map((data) =>
-    <CommentElement key={data._id} rate={data.rate} date={data.date} user={data.patient} comment={data.comment}/>
+    <CommentElement key={data._id} rate={data.rate} date={timeService.convertDate(data.date)} user={data.patient} comment={data.comment}/>
   )
 
 
