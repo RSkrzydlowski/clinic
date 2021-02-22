@@ -8,7 +8,7 @@ const DoctorElement = (props) => {
       <p className="doctor_name_paragraph">{props.name}</p>
       <p></p>
       <p>Ocena: {props.rate}</p>
-      <LinkButton link={`/doctor/${props._id}`}/>
+      <LinkButton link={`/doctor/${props._id}`} text="Zobacz"/>
     </div>
    );
 }

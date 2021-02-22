@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-
 const LinkButton = (props) => {
   return (
     <Link className="link_button" to={props.link}>
-      Zobacz
+      {props.text}
     </Link>
    );
 }

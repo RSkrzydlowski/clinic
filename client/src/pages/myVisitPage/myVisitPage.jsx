@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './myVisitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
+import { LinkButton } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authentication';
 
@@ -31,7 +32,7 @@ const MyVisitPage = () => {
     await fetch(url).then(async res => {
     res.json().then(res => {
       const data = res.data.slice()
-      console.log(data)
+      console.log('data', data)
       setVisitList(data)
     });
   });
@@ -54,7 +55,7 @@ const MyVisitPage = () => {
   )
 
   const visitComponent = visitList.map((data) =>
-      <p key={data._id}>{data.name}</p>
+      <p key={data._id}>{data.doctor}</p>
   )
 
   const items = VISIT_HOURS.map((data) =>
@@ -67,11 +68,9 @@ const MyVisitPage = () => {
 
   return (
     <div>
-      <Link to="/visit">
-      		Umów wizytę
-    	</Link>
+      <LinkButton link="/visit" text="Umów wizytę" />
       <p>Moje wizyty:</p>
-      {visitList && visitComponent}
+      {visitList.length === 0 ? "Nie masz umówionych wizyt" : visitComponent}
     </div>
    );
 }

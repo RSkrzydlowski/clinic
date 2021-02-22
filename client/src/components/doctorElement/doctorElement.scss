@@ -1,5 +1,7 @@
+@import '../../styles/colors.scss';
+
 .doctor_element_block {
-	width: 100%;
+	width: 90%;
 	height: 100px;
 	display: grid;
 	grid-template-columns: 50% 50%;
@@ -7,11 +9,19 @@
 }
 
 .doctor_element_block:nth-child(even) {
-	background-color: #fff;
+	background-color: $even-element;
+
+	&:hover {
+		background-color: $even-element-hover;
+	}
 }
 
 .doctor_element_block:nth-child(odd) {
-	background-color: #a2b6ca;
+	background-color: $odd-element;
+
+	&:hover {
+		background-color: $odd-element-hover;
+	}
 }
 
 .doctor_name_paragraph {
