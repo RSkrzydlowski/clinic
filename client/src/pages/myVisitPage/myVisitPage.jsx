@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './myVisitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
-import { LinkButton } from '../../components'
+import { LinkButton, VisitElement } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authentication';
+import timeService from '../../services/time'
 
 
 const MyVisitPage = () => {
@@ -55,7 +56,7 @@ const MyVisitPage = () => {
   )
 
   const visitComponent = visitList.map((data) =>
-      <p key={data._id}>{data.doctor}</p>
+      <VisitElement key={data._id} name={data.doctor} date={timeService.convertDate(data.date).split(' ')[0]} hour={timeService.convertDate(data.date).split(' ')[1]}/>
   )
 
   const items = VISIT_HOURS.map((data) =>

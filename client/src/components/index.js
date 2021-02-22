@@ -4,5 +4,6 @@ import AddCommentSection from './addCommentSection';
 import CommentElement from './commentElement';
 import Rating from './rating';
 import DoctorVisitElement from './doctorVisitElement';
+import VisitElement from './visitElement';
 
-export { LinkButton, DoctorElement, AddCommentSection, CommentElement, Rating, DoctorVisitElement };
+export { LinkButton, DoctorElement, AddCommentSection, CommentElement, Rating, DoctorVisitElement, VisitElement };
