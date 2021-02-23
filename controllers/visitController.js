@@ -49,6 +49,12 @@ router.get('/available-visit/:date', (req, res) => {
 			error: 'Please provide all data'
 		});
 	}
+	if (date < new Date(new Date().setHours(0, 0, 0, 0)).getTime()) {
+		return res.json({
+			success: false,
+			error: 'You cannot enter a date earlier than today.'
+		});
+	}
 	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, doctorData) => {
 		const returnData = [];
 		doctorData.forEach((item, index) => {
@@ -63,13 +69,10 @@ router.get('/available-visit/:date', (req, res) => {
 
 			visitData.forEach((item, index) => {
 				const doctorItem = returnData.filter((data) => data._id.equals(item.doctor));
-				console.log(doctorItem[0]);
-				console.log(doctorItem[0].visit);
 				doctorItem[0].visit = doctorItem[0].visit.filter(
 					(data) => convertHour(item.date) !== data.split(' - ')[0]
 				);
 			});
-			console.table(returnData);
 			return res.json({ success: true, data: returnData });
 		});
 	});
