@@ -9,6 +9,7 @@ import { AuthContext } from '../../authentication';
 
 
 const VisitPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false)
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date());
@@ -23,6 +24,7 @@ const VisitPage = () => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data.slice()
+        setIsLoaded(true)
 				setDoctorList(data)
 			});
 		});
@@ -72,7 +74,7 @@ const VisitPage = () => {
 
   };
 
-  return (
+  return isLoaded ? (
     <div>
       <p>Wybierz termin</p>
       <Calendar
@@ -91,7 +93,7 @@ const VisitPage = () => {
       {doctorList && doctorItems}
 
     </div>
-   );
+   ) : null;
 }
 
 export default VisitPage;

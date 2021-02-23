@@ -6,6 +6,8 @@ import { DoctorElement } from '../../components'
 
 const DoctorListPage = ({match}) => {
   const [doctorList, setDoctorList] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
+
   useEffect(() => {
     const fetchDoctor = async() => {
       const url = `${APP_URL}/api/users/doctors`
@@ -13,6 +15,7 @@ const DoctorListPage = ({match}) => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data
+        setIsLoaded(true)
 				setDoctorList(data)
 			});
 		});
@@ -20,20 +23,17 @@ const DoctorListPage = ({match}) => {
   fetchDoctor();
   }, []);
 
-
-  console.log(doctorList)
-
   const doctorParagraph = doctorList.map((data) =>
     <DoctorElement key={data._id} _id={data._id} name={data.name} rate={data.rate}/>
   )
 
 
-  return (
+  return isLoaded ? (
     <div>
-      <p>Dostępni lekarze:</p>
+      <p>Lekarze pracujący w naszej przychodni:</p>
       {doctorList && doctorParagraph}
     </div>
-   );
+   ) : null
 }
 
 export default DoctorListPage;

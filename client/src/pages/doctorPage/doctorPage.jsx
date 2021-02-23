@@ -10,6 +10,7 @@ import timeService from '../../services/time'
 
 const DoctorPage = ({match}) => {
   const id = match.params.id
+  const [isLoaded, setIsLoaded] = useState(false)
   const { currentUser } = useContext(AuthContext);
   const [doctor, setDoctor] = useState({})
   const [counter, setCounter] = useState(0)
@@ -25,6 +26,7 @@ const DoctorPage = ({match}) => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data
+        setIsLoaded(true)
 				setDoctor(data)
 			});
 		});
@@ -73,7 +75,7 @@ const DoctorPage = ({match}) => {
   )
 
 
-  return (
+  return isLoaded ? (
     <div className="doctor_block">
       <div className="doctor_information_block">
         <div>
@@ -102,7 +104,7 @@ const DoctorPage = ({match}) => {
       <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
       {doctorComments && commentSection}
     </div>
-   );
+   ) : null;
 }
 
 export default DoctorPage;

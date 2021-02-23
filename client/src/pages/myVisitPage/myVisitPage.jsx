@@ -8,6 +8,7 @@ import timeService from '../../services/time'
 
 
 const MyVisitPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false)
   const [visitHour, setVisitHour] = useState('');
   const [doctorList, setDoctorList] = useState([]);
   const [visitList, setVisitList] = useState([]);
@@ -20,6 +21,7 @@ const MyVisitPage = () => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data.slice()
+        setIsLoaded(true)
 				setDoctorList(data)
 			});
 		});

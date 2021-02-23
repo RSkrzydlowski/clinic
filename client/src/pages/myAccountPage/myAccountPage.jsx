@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './myAccountPage.scss'
 
 const MyAccountPage = () => {
-  return (
+  const [isLoaded, setIsLoaded] = useState(false)
+  return isLoaded ? (
     <div>
       Moje konto
     </div>
-   );
+   ) : null;
 }
 
 export default MyAccountPage;
