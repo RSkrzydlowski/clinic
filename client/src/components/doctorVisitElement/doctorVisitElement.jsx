@@ -7,6 +7,7 @@ const DoctorVisitElement = (props) => {
   const doctorName = props.name;
   const doctorId = props.doctorId;
   const [hourValue, setHourValue] = useState(hours[0])
+  console.log('hours', hours)
   const items = hours.map((data) =>
   (
   <option
@@ -25,16 +26,16 @@ const DoctorVisitElement = (props) => {
   }
 
 
-  return (
+  return hours.length > 0 ? (
     <div className="doctor_visit_element_block">
       <p className="doctor_name_paragraph">{doctorName}</p>
-      <p>Ocena: {props.rate}</p>
       <select onChange={(e) => setHourValue(e.target.value)} value={hourValue}>
         {items}
       </select>
+
       <button onClick={changeVisitData}>Wybierz</button>
     </div>
-   );
+   ) : null;
 }
 
 export default DoctorVisitElement;

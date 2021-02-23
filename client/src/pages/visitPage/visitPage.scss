@@ -2,3 +2,13 @@
 	display: flex;
 	flex-direction: row;
 }
+
+.available_doctors_paragraph {
+	text-align: center;
+}
+
+.visit_time_block {
+	margin: 30px;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}

@@ -16,7 +16,7 @@ const DoctorPage = ({match}) => {
   const [counter, setCounter] = useState(0)
   const [doctorComments, setDoctorComments] = useState([]);
   const [stars, setStars] = useState([]);
-  const [visitHour, setVisitHour] = useState('');
+  const [rate, setRate] = useState(0);
 
 
   useEffect(() => {
@@ -26,14 +26,16 @@ const DoctorPage = ({match}) => {
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const data = res.data
-        setIsLoaded(true)
 				setDoctor(data)
+        setIsLoaded(true)
 			});
 		});
 	}
 
+
   fetchDoctor();
   }, []);
+
 
   useEffect(() => {
   const fetchDoctorComments = async() => {
@@ -43,10 +45,13 @@ const DoctorPage = ({match}) => {
     res.json().then(res => {
       const data = res.data
       const stars = res.data.filter(data => data.rate > 0)
+      let sum = 0;
       const starsArray = [0, 0, 0, 0, 0]
       for (let i = 0; i < stars.length; i++) {
         starsArray[stars[i].rate - 1] += 1;
+        sum += stars[i].rate
       }
+      setRate(sum / stars.length)
       if(stars.length > 0) {
         for(let i = 0; i < starsArray.length; i++) {
           starsArray[i] = (starsArray[i] / stars.length) * 100
@@ -69,7 +74,7 @@ const DoctorPage = ({match}) => {
 
   const comments = doctorComments.filter(data => data.comment !== "")
 
-  console.table(stars)
+  console.table(comments)
   const commentSection = comments.map((data) =>
     <CommentElement key={data._id} rate={data.rate} date={timeService.convertDate(data.date)} user={data.patient} comment={data.comment}/>
   )
@@ -83,8 +88,7 @@ const DoctorPage = ({match}) => {
         </div>
         <div>
           {doctor ? doctor.name : null}
-          <p>Ocena</p>
-          <p>Twoje wizyty:</p>
+          <p>Ocena: {rate}</p>
         </div>
         <div>
           <p>oceny:</p>

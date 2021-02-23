@@ -37,7 +37,14 @@ router.get('/:id', (req, res) => {
 
 	Visit.find({ patient: id }, (err, data) => {
 		if (err) return res.json({ success: false, error: err });
-		return res.json({ success: true, data: data });
+		const doctorArray = [];
+		data.forEach((item) => {
+			doctorArray.push(item.doctor);
+		});
+		User.find({ role: 'doctor', _id: { $in: doctorArray } }, '-salt -hashedPassword', (err, doctorData) => {
+			console.log('doctor', doctorData);
+			return res.json({ success: true, data: data });
+		});
 	});
 });
 

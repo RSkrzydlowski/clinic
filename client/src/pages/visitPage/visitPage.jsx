@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import './'
+import './visitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
 import { DoctorVisitElement } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
@@ -14,7 +14,7 @@ const VisitPage = () => {
   const [doctorList, setDoctorList] = useState([]);
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [dateInMilliseconds, setDateInMilliseconds] = useState(new Date(new Date().setHours(0, 0, 0, 0)).getTime());
-  const [visitData, setVisitData] = useState({})
+  const [visitData, setVisitData] = useState(null)
   const [counter, setCounter] = useState(0)
   const { currentUser } = useContext(AuthContext);
 
@@ -23,9 +23,13 @@ const VisitPage = () => {
       const url = `${APP_URL}/api/visits/available-visit/${dateInMilliseconds}`
 			await fetch(url).then(async res => {
 			res.json().then(res => {
-        const data = res.data.slice()
-        setIsLoaded(true)
-				setDoctorList(data)
+        if(res.success) {
+          const data = res.data.slice()
+          setIsLoaded(true)
+          setDoctorList(data)
+        } else {
+          alert(res.error)
+        }
 			});
 		});
 	}
@@ -76,19 +80,35 @@ const VisitPage = () => {
 
   return isLoaded ? (
     <div>
-      <p>Wybierz termin</p>
-      <Calendar
-        onChange={(e) => {
-          const newDate = new Date(e);
-          setDateInMilliseconds(newDate.getTime())
-          setCalendarDate(newDate)
-        }}
-        value={calendarDate}
-      />
-      <p>{visitData.doctorName}</p>
-      <p>{visitData.visitHour}</p>
-      <button onClick={addVisit}>Akceptuj</button>
-      <p>Dostępni lekarze:</p>
+      <div className="visit_time_block">
+        <div>
+          <p>Wybierz termin</p>
+          <Calendar
+            onChange={(e) => {
+              const newDate = new Date(e);
+              console.log(newDate)
+              if (newDate.getTime() >= new Date(new Date().setHours(0, 0, 0, 0)).getTime()) {
+              setDateInMilliseconds(newDate.getTime())
+              setCalendarDate(newDate)
+              }
+            }}
+            value={calendarDate}
+          />
+        </div>
+        {visitData && (
+        <div>
+          <p>Szczegóły</p>
+          <p>{visitData.doctorName}</p>
+          {visitData.visitHour && <p>{`${calendarDate.getDate()}-${calendarDate.getMonth() + 1}-${calendarDate.getFullYear()}`}</p>}
+          {visitData.visitHour && <p>{visitData.visitHour.split(" - ")[0]}</p>}
+          <button onClick={addVisit}>Akceptuj</button>
+        </div>
+        )}
+
+      </div>
+
+
+      <p className="available_doctors_paragraph">Dostępni lekarze:</p>
 
       {doctorList && doctorItems}
 
