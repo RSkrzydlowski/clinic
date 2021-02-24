@@ -15,7 +15,6 @@ const VisitPage = () => {
   const [dateInMilliseconds, setDateInMilliseconds] = useState(new Date(new Date().setHours(0, 0, 0, 0)).getTime());
   const [visitData, setVisitData] = useState(null)
   const [counter, setCounter] = useState(0)
-  let key = 0
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -41,10 +40,8 @@ const VisitPage = () => {
   }
 
   const doctorItems = doctorList.map((data) => (
-    <DoctorVisitElement key={key++} doctorId={data._id} name={data.name} hours={data.visit} initialValue={data.visit[0]} changeData={changeData}/>
+    <DoctorVisitElement key={data._id} doctorId={data._id} name={data.name} hours={data.visit} initialValue={data.visit[0]} changeData={changeData}/>
   ))
-
-  console.log('list', doctorList)
 
   const addVisit = () => {
     const url = `${APP_URL}/api/visits/add`
@@ -75,14 +72,14 @@ const VisitPage = () => {
   };
 
   return isLoaded ? (
-    <div>
-      <div className="visit_time_block">
+    <div className="visit_page_block">
+      <div className={visitData ? "visit_time_two_columns_block" : "visit_time_one_columns_block"}>
         <div>
           <p>Wybierz termin</p>
           <Calendar
             onChange={(e) => {
               const newDate = new Date(e);
-              if (newDate.getTime() >= new Date(new Date().setHours(0, 0, 0, 0)).getTime()) {
+              if (newDate.getTime() >= new Date(new Date().setHours(0, 0, 0, 0)).getTime() && (newDate.getDay() !== 0 && newDate.getDay() !== 6)) {
               setDateInMilliseconds(newDate.getTime())
               setCalendarDate(newDate)
               }
@@ -92,7 +89,7 @@ const VisitPage = () => {
         </div>
         {visitData && (
         <div>
-          <p>Szczegóły</p>
+          <p>Szczegóły:</p>
           <p>{visitData.doctorName}</p>
           {visitData.visitHour && <p>{`${calendarDate.getDate()}-${calendarDate.getMonth() + 1}-${calendarDate.getFullYear()}`}</p>}
           {visitData.visitHour && <p>{visitData.visitHour.split(" - ")[0]}</p>}
