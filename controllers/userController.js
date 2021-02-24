@@ -16,7 +16,6 @@ router.get('/user-number', (req, res) => {
 });
 
 router.get('/doctors', (req, res) => {
-	console.log('da');
 	User.find({ role: 'doctor' }, '-salt -hashedPassword', (err, doctorData) => {
 		if (err) return res.json({ success: false, error: err });
 		const doctorArray = [];

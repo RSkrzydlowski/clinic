@@ -6,8 +6,9 @@ const DoctorVisitElement = (props) => {
   const hours = props.hours;
   const doctorName = props.name;
   const doctorId = props.doctorId;
-  const [hourValue, setHourValue] = useState(hours[0])
-  console.log('hours', hours)
+  const initialValue = props.initialValue;
+  const [hourValue, setHourValue] = useState(initialValue)
+
   const items = hours.map((data) =>
   (
   <option
@@ -24,6 +25,8 @@ const DoctorVisitElement = (props) => {
     }
     props.changeData(data)
   }
+
+
 
 
   return hours.length > 0 ? (

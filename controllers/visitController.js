@@ -19,6 +19,13 @@ router.post('/add', (req, res) => {
 	visit.patient = patientId;
 	visit.doctor = doctorId;
 
+	Visit.find({ $or: [ { $and: [ { date, doctor } ] }, { $and: [ { date, patient } ] } ] }, (err, data) => {
+		if (err) return res.json({ success: false, error: err });
+		if (data.length > 0) {
+			return res.json({ success: false, error: 'This date is not available' });
+		}
+	});
+
 	visit.save((err) => {
 		if (err) return res.json({ success: false, error: err });
 		return res.json({ success: true });
@@ -35,16 +42,29 @@ router.get('/:id', (req, res) => {
 		});
 	}
 
-	Visit.find({ patient: id }, (err, data) => {
+	Visit.find({ patient: id }, (err, visitData) => {
 		if (err) return res.json({ success: false, error: err });
 		const doctorArray = [];
-		data.forEach((item) => {
+		visitData.forEach((item) => {
 			doctorArray.push(item.doctor);
 		});
-		User.find({ role: 'doctor', _id: { $in: doctorArray } }, '-salt -hashedPassword', (err, doctorData) => {
-			console.log('doctor', doctorData);
-			return res.json({ success: true, data: data });
-		});
+		User.find(
+			{ $and: [ { role: 'doctor', _id: { $in: doctorArray } } ] },
+			'-salt -hashedPassword',
+			(err, doctorData) => {
+				const returnData = [];
+				visitData.forEach((item) => {
+					const returnName = doctorData.filter((data) => data._id.equals(item.doctor))[0];
+					const returnItem = {
+						_id: item._id,
+						doctor: returnName.name,
+						date: item.date
+					};
+					returnData.push(returnItem);
+				});
+				return res.json({ success: true, data: returnData });
+			}
+		);
 	});
 });
 
