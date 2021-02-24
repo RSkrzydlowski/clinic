@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './registerPage.scss';
 import { APP_URL } from '../../data/constant'
+import { Button } from '../../components'
 
 const RegisterPage = () => {
   const [ name, setName ] = useState('');
@@ -43,7 +44,7 @@ const RegisterPage = () => {
         Hasło:
         <input onChange={(e) => setPassword(e.target.value)} type="password" />
       </p>
-      <button onClick={save}>Zarejestruj</button>
+      <Button onClick={save} text="Zarejestruj" />
     </form>
    );
 }

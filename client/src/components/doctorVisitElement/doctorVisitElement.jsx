@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './doctorVisitElement.scss';
-import {VISIT_HOURS} from '../../data/constant'
+import { Button } from '../../components'
 
 const DoctorVisitElement = (props) => {
   const hours = props.hours;
@@ -36,7 +36,7 @@ const DoctorVisitElement = (props) => {
         {items}
       </select>
 
-      <button onClick={changeVisitData}>Wybierz</button>
+      <Button onClick={changeVisitData} text="Wybierz" />
     </div>
    ) : null;
 }

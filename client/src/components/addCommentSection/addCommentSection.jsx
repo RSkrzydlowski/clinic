@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './addCommentSection.scss';
 import { APP_URL } from '../../data/constant'
 import Rating from '../rating'
+import { Button } from '../../components'
 
 const AddCommentSection = (props) => {
   const doctorId = props.doctorId
@@ -44,7 +45,7 @@ const AddCommentSection = (props) => {
   return (
     <div className="add_comment_section">
       <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Dodaj komentarz..." className="comment_textarea" />
-      <button onClick={addComment}>Dodaj</button>
+      <Button onClick={addComment} text="Dodaj" />
       <Rating commentStatus={commentStatus} commentType={style} changeRate={changeRate} />
     </div>
    );

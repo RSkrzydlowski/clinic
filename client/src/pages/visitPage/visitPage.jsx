@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './visitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
-import { DoctorVisitElement } from '../../components'
+import { DoctorVisitElement, Button } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -96,7 +96,7 @@ const VisitPage = () => {
           <p>{visitData.doctorName}</p>
           {visitData.visitHour && <p>{`${calendarDate.getDate()}-${calendarDate.getMonth() + 1}-${calendarDate.getFullYear()}`}</p>}
           {visitData.visitHour && <p>{visitData.visitHour.split(" - ")[0]}</p>}
-          <button onClick={addVisit}>Akceptuj</button>
+          <Button text="Akceptuj" onClick={addVisit} />
         </div>
         )}
 

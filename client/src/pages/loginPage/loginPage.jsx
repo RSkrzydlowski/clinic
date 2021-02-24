@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import authService from "../../services/auth";
 import './loginPage.scss';
-// import { APP_URL } from '../../data/constant'
+import { Button } from '../../components'
 
 const LoginPage = ({history}) => {
   const [ email, setEmail ] = useState('');
@@ -19,13 +19,15 @@ const LoginPage = ({history}) => {
         <input onChange={(e) => setPassword(e.target.value)} type="password" name="name" />
       </p>
       <p>Reset hasła</p>
-      <button onClick={async ev => {
+      <Button
+      text="Zaloguj"
+      onClick={async ev => {
               ev.preventDefault();
               await authService.signIn({
                 email: email,
                 password: password
               });
-            }}>Zaloguj</button>
+            }}/>
     </form>
    );
 }
