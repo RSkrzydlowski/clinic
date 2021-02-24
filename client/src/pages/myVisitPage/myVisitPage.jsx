@@ -33,9 +33,10 @@ const MyVisitPage = () => {
   )
 
   return isLoaded ? (
-    <div>
-      <LinkButton link="/visit" text="Umów wizytę" />
-      <p>Moje wizyty:</p>
+    <div className="visit_page_block">
+      <div className="visit_button_wrapper"><LinkButton link="/visit" text="Umów wizytę" /></div>
+
+      <p className="visit_paragraph">Moje wizyty:</p>
       {visitList.length === 0 ? "Nie masz umówionych wizyt" : visitComponent}
     </div>
    ) : null;
