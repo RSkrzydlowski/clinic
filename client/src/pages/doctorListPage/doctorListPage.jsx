@@ -29,8 +29,8 @@ const DoctorListPage = ({match}) => {
 
 
   return isLoaded ? (
-    <div>
-      <p>Lekarze pracujący w naszej przychodni:</p>
+    <div className="doctor_list_page_block">
+      <p className="working_doctors_paragraph">Lekarze pracujący w naszej przychodni:</p>
       {doctorList && doctorParagraph}
     </div>
    ) : null
