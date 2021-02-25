@@ -19,7 +19,7 @@ const TopScreen = () => {
 				<Route path="/activate/:id" component={ActivatePage} />
 				<Route path="/my-account" component={MyAccountPage} />
 			</div>
-			<Footer />
+			{/* <Footer /> */}
 			</div>
 	);
 };

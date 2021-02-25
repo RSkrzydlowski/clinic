@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './doctorPage.scss';
 import { APP_URL } from '../../data/constant';
-import { AddCommentSection, CommentElement } from '../../components';
+import { AddCommentSection, CommentElement, LoadingComponent } from '../../components';
 import { AuthContext } from '../../authentication';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -108,7 +108,7 @@ const DoctorPage = ({match}) => {
       <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
       {doctorComments && commentSection}
     </div>
-   ) : null;
+   ) : <LoadingComponent isLoaded={isLoaded}/>;
 }
 
 export default DoctorPage;

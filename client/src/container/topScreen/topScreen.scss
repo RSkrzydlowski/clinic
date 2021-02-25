@@ -36,4 +36,5 @@ a {
 .top_display {
 	margin: 0px;
 	top: 67px;
+	min-height: calc(100vh - 77px);
 }

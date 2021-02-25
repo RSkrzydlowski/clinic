@@ -6,6 +6,7 @@ import Rating from './rating';
 import DoctorVisitElement from './doctorVisitElement';
 import VisitElement from './visitElement';
 import Button from './button';
+import LoadingComponent from './loadingComponent';
 
 export {
 	LinkButton,
@@ -15,5 +16,6 @@ export {
 	Rating,
 	DoctorVisitElement,
 	VisitElement,
-	Button
+	Button,
+	LoadingComponent
 };
