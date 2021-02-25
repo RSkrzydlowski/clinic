@@ -76,7 +76,7 @@ const DoctorPage = ({match}) => {
 
   console.table(comments)
   const commentSection = comments.map((data) =>
-    <CommentElement key={data._id} rate={data.rate} date={timeService.convertDate(data.date)} user={data.patient} comment={data.comment}/>
+    <CommentElement key={data._id} rate={data.rate} date={data.date} user={data.patient} comment={data.comment}/>
   )
 
 
@@ -88,7 +88,7 @@ const DoctorPage = ({match}) => {
         </div>
         <div>
           {doctor ? doctor.name : null}
-          <p>Ocena: {rate}</p>
+          <p>Ocena: {Math.round((rate + Number.EPSILON) * 100) / 100}</p>
         </div>
         <div>
           <p>oceny:</p>
@@ -106,7 +106,7 @@ const DoctorPage = ({match}) => {
     	</Link>
       <p className="comment_information">Komentarze ({comments.length})</p>
       <AddCommentSection changeCounter={changeCounter} doctorId={id} patientId={currentUser.id}/>
-      {doctorComments && commentSection}
+      {doctorComments && <div className="comment_section_block">{commentSection}</div>}
     </div>
    ) : <LoadingComponent isLoaded={isLoaded}/>;
 }

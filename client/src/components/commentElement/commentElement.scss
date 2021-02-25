@@ -1,18 +1,23 @@
 .comment_element_block {
-	margin: 0px 20px;
+	margin: 5px 20px;
 }
 
 .comment_text {
-	background-color: gray;
+	background-color: rgb(174, 200, 230);
 	padding: 5px 5px 5px 20px;
 	min-height: 50px;
+
+	p {
+		white-space: pre-line;
+	}
 }
 
 .comment_paragraph {
 	display: flex;
 	flex-direction: row;
 	align-content: left;
-	background-color: red;
+	background-color: rgb(135, 168, 211);
+	white-space: pre-line;
 
 	p {
 		margin: 5px 5px 5px 20px;
