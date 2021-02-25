@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './myVisitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
-import { LinkButton, VisitElement } from '../../components'
+import { LinkButton, VisitElement, LoadingComponent } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authentication';
 import timeService from '../../services/time'
@@ -39,7 +39,7 @@ const MyVisitPage = () => {
       <p className="visit_paragraph">Moje wizyty:</p>
       {visitList.length === 0 ? "Nie masz umówionych wizyt" : visitComponent}
     </div>
-   ) : null;
+   ) : <LoadingComponent isLoaded={isLoaded}/>;;
 }
 
 export default MyVisitPage;

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './visitPage.scss'
 import { APP_URL, VISIT_HOURS} from '../../data/constant'
-import { DoctorVisitElement, Button } from '../../components'
+import { DoctorVisitElement, Button, LoadingComponent } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -105,7 +105,7 @@ const VisitPage = () => {
       {doctorList && doctorItems}
 
     </div>
-   ) : null;
+   ) : <LoadingComponent isLoaded={isLoaded}/>;;
 }
 
 export default VisitPage;

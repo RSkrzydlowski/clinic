@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './myAccountPage.scss'
+import { LoadingComponent } from '../../components';
 
 const MyAccountPage = () => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -7,7 +8,7 @@ const MyAccountPage = () => {
     <div>
       Moje konto
     </div>
-   ) : null;
+   ) : <LoadingComponent isLoaded={isLoaded}/>;;
 }
 
 export default MyAccountPage;

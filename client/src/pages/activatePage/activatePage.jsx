@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './activatePage.scss';
 import { APP_URL } from '../../data/constant';
+import { LoadingComponent } from '../../components';
 
 const ActivatePage = ({match}) => {
   const id = match.params.id
@@ -26,7 +27,7 @@ const ActivatePage = ({match}) => {
     <div>
       {text}
     </div>
-   ) : null;
+   ) : <LoadingComponent isLoaded={isLoaded}/>;;
 }
 
 export default ActivatePage;
