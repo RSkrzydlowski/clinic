@@ -7,6 +7,7 @@ import DoctorPage from './doctorPage';
 import DoctorListPage from './doctorListPage';
 import ActivatePage from './activatePage';
 import MyAccountPage from './myAccountPage';
+import SetPasswordPage from './setPasswordPage';
 
 export {
 	MainPage,
@@ -17,5 +18,6 @@ export {
 	DoctorPage,
 	DoctorListPage,
 	ActivatePage,
-	MyAccountPage
+	MyAccountPage,
+	SetPasswordPage
 };

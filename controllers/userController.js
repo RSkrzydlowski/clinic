@@ -178,7 +178,7 @@ router.get('/activate/:id', async (req, res) => {
 		if (user.activate) {
 			return res.json({ success: false, message: 'To konto jest już aktywne' });
 		}
-		User.findByIdAndUpdate({ _id: id }, item, (err) => {
+		User.findByIdAndUpdate(id, item, (err) => {
 			if (err) return res.json({ success: false, error: err });
 			return res.json({ success: true, message: 'Konto zostało aktywowane' });
 		});
@@ -260,6 +260,47 @@ router.get('/', (req, res) => {
 			return res.json({ success: true, data: data });
 		}
 	);
+});
+
+router.post('/set-password', async (req, res) => {
+	const { _id, oldPassword, newPassword } = req.body;
+	if (!oldPassword || !newPassword) {
+		return res.json({
+			success: false,
+			error: 'Fill all fields'
+		});
+	}
+	if (!_id) {
+		return res.json({
+			success: false,
+			error: 'Something went wrong'
+		});
+	}
+	User.findOne({ _id }, async (err, user) => {
+		if (err) return res.json({ success: false, error: err });
+		if (user) {
+			const correctPassword = await argon2.verify(user.hashedPassword, oldPassword);
+			if (correctPassword) {
+				const salt = crypto.randomBytes(32);
+				const hashedPassword = await argon2.hash(newPassword, { salt });
+				const newUser = new User();
+				newUser._id = _id;
+				newUser.hashedPassword = hashedPassword;
+				newUser.salt = salt.toString('hex');
+				User.findByIdAndUpdate(_id, newUser, (err) => {
+					if (err) return res.json({ success: false, error: err });
+					return res.json({ success: true });
+				});
+			} else {
+				return res.json({
+					success: false,
+					error: 'Incorrect password'
+				});
+			}
+		} else {
+			return res.json({ success: false, error: 'Incorrect email or password' });
+		}
+	});
 });
 
 module.exports = router;
