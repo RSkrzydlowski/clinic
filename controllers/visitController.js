@@ -19,12 +19,15 @@ router.post('/add', (req, res) => {
 	visit.patient = patientId;
 	visit.doctor = doctorId;
 
-	Visit.find({ $or: [ { $and: [ { date, doctor } ] }, { $and: [ { date, patient } ] } ] }, (err, data) => {
-		if (err) return res.json({ success: false, error: err });
-		if (data.length > 0) {
-			return res.json({ success: false, error: 'This date is not available' });
+	Visit.find(
+		{ $or: [ { $and: [ { date, doctor: doctorId } ] }, { $and: [ { date, patient: patientId } ] } ] },
+		(err, data) => {
+			if (err) return res.json({ success: false, error: err });
+			if (data.length > 0) {
+				return res.json({ success: false, error: 'This date is not available' });
+			}
 		}
-	});
+	);
 
 	visit.save((err) => {
 		if (err) return res.json({ success: false, error: err });

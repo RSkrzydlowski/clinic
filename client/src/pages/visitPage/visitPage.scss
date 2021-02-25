@@ -1,9 +1,3 @@
-.visit_page_block {
-	p {
-		font-size: 25px;
-	}
-}
-
 .visit_date_block {
 	display: flex;
 	flex-direction: row;
@@ -11,6 +5,7 @@
 
 .available_doctors_paragraph {
 	text-align: center;
+	font-size: 25px;
 }
 
 .visit_time_one_columns_block {
