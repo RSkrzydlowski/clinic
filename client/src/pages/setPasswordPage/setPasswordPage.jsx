@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import './setPasswordPage.scss'
-import { Button } from '../../components'
+import { Button, FormElement } from '../../components'
 import { APP_URL } from '../../data/constant'
 import { AuthContext } from '../../authentication';
 
@@ -32,20 +32,11 @@ const SetPasswordPage = () => {
   }
 
   return (
-    <div>
-      <p>
-        Stare hasło:
-        <input onChange={(e) => setOldPassword(e.target.value)} type="password" />
-      </p>
-      <p>
-        Nowe hasło:
-        <input onChange={(e) => setNewPassword(e.target.value)} type="password" />
-      </p>
-      <p>
-        Powtórz nowe hasło:
-        <input onChange={(e) => setRepeatNewPassword(e.target.value)} type="password" />
-      </p>
-      <Button text="Wyślij" onClick={changePassword} />
+    <div className="set_password_page_block">
+      <FormElement text="Stare hasło:" onChange={(e) => setOldPassword(e.target.value)} type="password"/>
+      <FormElement text="Nowe hasło:" onChange={(e) => setNewPassword(e.target.value)} type="password"/>
+      <FormElement text="Powtórz hasło:" onChange={(e) => setRepeatNewPassword(e.target.value)} type="password"/>
+      <Button text="Zmień" onClick={changePassword} />
     </div>
    );
 }

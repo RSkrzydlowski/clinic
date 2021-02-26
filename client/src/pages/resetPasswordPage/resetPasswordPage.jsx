@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './resetPasswordPage.scss'
-import { Button } from '../../components'
+import { Button, FormElement } from '../../components'
 import { APP_URL } from '../../data/constant'
 
 const ResetPasswordPage = () => {
@@ -27,10 +27,7 @@ const ResetPasswordPage = () => {
 
   return (
     <div className="reset_password_block">
-      <p>
-        Email:
-        <input onChange={(e) => setEmail(e.target.value)} type="email"/>
-      </p>
+      <FormElement text="Email:" onChange={(e) => setEmail(e.target.value)} type="email" />
       <Button
       text="Wyślij"
       onClick={send}/>
