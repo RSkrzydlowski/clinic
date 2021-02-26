@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const ResetPassword = require('../models/resetPassword');
 const convertHour = require('../services/hour');
 const address = process.env.APP_URL || 'http://localhost:3000';
+const nodemailer = require('nodemailer');
 
 router.post('/send-email-reset-password', async (req, res) => {
 	const { email } = req.body;
@@ -34,8 +36,8 @@ router.post('/send-email-reset-password', async (req, res) => {
 					from: process.env.EMAIL_ADDRESS,
 					to: email,
 					subject: 'Reset password',
-					html: `<h1>Hi ${u.name}</h1>
-        <p>It has been reported that you forgot your password to your account, to reset your password go to the link below. If that's not you, ignore this message. <a href=${address}/reset-password/${u._id}/${resetData._id}>link</a></p>`
+					html: `<h1>Hi ${user.name}</h1>
+        <p>It has been reported that you forgot your password to your account, to reset your password go to the link below. If that's not you, ignore this message. <a href=${address}/reset-password/${user._id}/${resetData._id}>link</a></p>`
 				};
 
 				transporter.sendMail(mailOptions, function(error, info) {

@@ -34,6 +34,6 @@ app.use(morgan('tiny'));
 app.use('/api/users', userController);
 app.use('/api/visits', visitController);
 app.use('/api/comments', commentController);
-app.use('/api/reset-password', resetPasswordController);
+app.use('/api/reset-passwords', resetPasswordController);
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));

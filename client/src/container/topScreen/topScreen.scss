@@ -11,13 +11,13 @@
 	left: calc(10% + 10px);
 }
 
-.top_screen {
-	position: absolute;
-	width: 90%;
-	top: 67px;
-	right: 0;
-	margin: 0px;
-}
+// .top_screen {
+// 	position: absolute;
+// 	width: 90%;
+// 	top: 67px;
+// 	right: 0;
+// 	margin: 0px;
+// }
 
 .menubar_display {
 	display: flex;
@@ -33,8 +33,22 @@ a {
 	text-decoration: none;
 }
 
-.top_display {
-	margin: 0px;
+.top_display_logged {
+	position: absolute;
+	width: 90%;
+	right: 0;
 	top: 67px;
 	min-height: calc(100vh - 77px);
+	margin: 0px;
+	background-color: blue;
+}
+
+.top_display_not_logged {
+	margin: 0px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 67px;
+	min-height: calc(100vh - 77px);
+	background-color: red;
 }
