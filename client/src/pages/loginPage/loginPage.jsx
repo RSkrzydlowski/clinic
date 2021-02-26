@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import authService from "../../services/auth";
 import './loginPage.scss';
-import { Button, LinkButton, FormElement } from '../../components'
+import { Button, LinkParagraph, FormElement } from '../../components'
 
 const LoginPage = ({history}) => {
   const [ email, setEmail ] = useState('');
@@ -12,8 +12,7 @@ const LoginPage = ({history}) => {
     <form className="login_form">
       <FormElement text="Email:" onChange={(e) => setEmail(e.target.value)} type="email"/>
       <FormElement text="Hasło:" onChange={(e) => setPassword(e.target.value)} type="password"/>
-      <LinkButton text="Nie pamietasz hasła?" link="/reset-password"/>
-      <p>Reset hasła</p>
+      <LinkParagraph text="Nie pamietasz hasła?" link="/reset-password"/>
       <Button
       text="Zaloguj"
       onClick={async ev => {

@@ -8,6 +8,7 @@ import VisitElement from './visitElement';
 import Button from './button';
 import LoadingComponent from './loadingComponent';
 import FormElement from './formElement';
+import LinkParagraph from './linkParagraph';
 
 export {
 	LinkButton,
@@ -19,5 +20,6 @@ export {
 	VisitElement,
 	Button,
 	LoadingComponent,
-	FormElement
+	FormElement,
+	LinkParagraph
 };
