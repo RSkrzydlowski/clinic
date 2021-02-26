@@ -7,6 +7,7 @@ import DoctorVisitElement from './doctorVisitElement';
 import VisitElement from './visitElement';
 import Button from './button';
 import LoadingComponent from './loadingComponent';
+import FormElement from './formElement';
 
 export {
 	LinkButton,
@@ -17,5 +18,6 @@ export {
 	DoctorVisitElement,
 	VisitElement,
 	Button,
-	LoadingComponent
+	LoadingComponent,
+	FormElement
 };

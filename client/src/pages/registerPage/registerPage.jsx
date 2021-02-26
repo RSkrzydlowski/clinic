@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './registerPage.scss';
 import { APP_URL } from '../../data/constant'
-import { Button } from '../../components'
+import { Button, FormElement } from '../../components'
 
 const RegisterPage = () => {
   const [ name, setName ] = useState('');
@@ -32,18 +32,9 @@ const RegisterPage = () => {
 
   return (
     <form className="register_form">
-      <p>
-        Nazwa:
-        <input onChange={(e) => setName(e.target.value)} type="text" />
-      </p>
-      <p>
-        Email:
-        <input onChange={(e) => setEmail(e.target.value)} type="email" />
-      </p>
-      <p>
-        Hasło:
-        <input onChange={(e) => setPassword(e.target.value)} type="password" />
-      </p>
+      <FormElement text="Nazwa:" onChange={(e) => setName(e.target.value)} type="text" />
+      <FormElement text="Email:" onChange={(e) => setEmail(e.target.value)} type="email" />
+      <FormElement text="Hasło:" onChange={(e) => setPassword(e.target.value)} type="password" />
       <Button onClick={save} text="Zarejestruj" />
     </form>
    );
