@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000; // Step 1
 const userController = require('./controllers/userController');
 const visitController = require('./controllers/visitController');
 const commentController = require('./controllers/commentController');
+const resetPasswordController = require('./controllers/resetPasswordController');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/clinic', {
 	useNewUrlParser: true,
@@ -33,5 +34,6 @@ app.use(morgan('tiny'));
 app.use('/api/users', userController);
 app.use('/api/visits', visitController);
 app.use('/api/comments', commentController);
+app.use('/api/reset-password', resetPasswordController);
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
