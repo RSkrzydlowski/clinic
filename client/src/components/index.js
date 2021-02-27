@@ -9,6 +9,7 @@ import Button from './button';
 import LoadingComponent from './loadingComponent';
 import FormElement from './formElement';
 import LinkParagraph from './linkParagraph';
+import LinkHeaderButton from './linkHeaderButton';
 
 export {
 	LinkButton,
@@ -21,5 +22,6 @@ export {
 	Button,
 	LoadingComponent,
 	FormElement,
-	LinkParagraph
+	LinkParagraph,
+	LinkHeaderButton
 };

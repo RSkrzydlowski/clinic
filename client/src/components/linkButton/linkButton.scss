@@ -5,4 +5,8 @@
 	font-size: 20px;
 	width: auto;
 	padding: 0px 10px;
+
+	&:hover {
+		cursor: pointer;
+	}
 }

@@ -1,7 +1,22 @@
 @import '../../styles/colors.scss';
 
-.main_div {
+.header_logged {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	background-color: $blue;
+	color: $white;
+	height: 67px;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	* {
+		height: 100%;
+	}
+}
+
+.header_not_logged {
 	display: flex;
+	flex-direction: row;
 	background-color: $blue;
 	color: $white;
 	height: 67px;
@@ -23,4 +38,11 @@
 	display: flex;
 	flex-direction: row;
 	font-size: 25px;
+}
+
+.app_name_paragraph {
+	position: absolute;
+	left: 300px;
+	bottom: 5px;
+	font-size: 60px;
 }

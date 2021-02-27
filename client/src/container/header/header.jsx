@@ -1,26 +1,38 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './header.scss';
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authentication';
 import authService from "../../services/auth";
+import {LinkHeaderButton} from '../../components'
 
 const Header = () => {
 	const { currentUser } = useContext(AuthContext);
+	const [headerClassName, setHeaderClassName] = useState('');
+
+	useEffect(() => {
+    const setClassName = () => {
+      if(currentUser) {
+				setHeaderClassName("header_logged")
+			} else {
+				setHeaderClassName("header_not_logged")
+			}
+		}
+
+  setClassName();
+  }, [currentUser]);
+
 	return (
-		<div className="main_div">
-			<p>Clinic</p>
-			{!currentUser && (<div>
-    		<Link to="/sign-in">
-      		zaloguj się
-    		</Link>
-				<Link to="/sign-up">
-      		zarejestruj się
-    		</Link>
+		<div>
+
+			{/* {!currentUser && (<div className="header_logged"> */}
+			{!currentUser && (<div className="header_not_logged">
+				<p className="app_name_paragraph">Clinic</p>
+    		<LinkHeaderButton link="/sign-in" text="zaloguj się" />
+    		<LinkHeaderButton link="/sign-up" text="zarejestruj się" />
   		</div>)}
-			{currentUser && (<div>
-    		<Link to="/home" className="link">
-					<button onClick={() => authService.signOut()}>Wyloguj się</button>
-				</Link>
+			{/* {currentUser && (<div className="header_not_logged"> */}
+			{currentUser && (<div className="header_logged">
+				<p className="app_name_paragraph">Clinic</p>
+				<LinkHeaderButton link="/home"  onClick={() => authService.signOut()} text="Wyloguj się" />
   		</div>)}
 		</div>
 	)
