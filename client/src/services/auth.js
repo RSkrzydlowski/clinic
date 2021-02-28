@@ -25,6 +25,7 @@ const signIn = async ({ email, password }) => {
 			};
 			localStorage.setItem('currentUser', JSON.stringify(currentUser));
 			onAuthStateChangedCallback(currentUser);
+			window.location.href = 'http://localhost:3000/me';
 		}
 	});
 };

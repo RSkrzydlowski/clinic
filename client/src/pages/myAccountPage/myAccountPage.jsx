@@ -25,7 +25,7 @@ const MyAccountPage = () => {
   }, []);
 
   return isLoaded ? (
-    <div>
+    <div className="my_account_page">
       <p>Moje konto:</p>
       <p>Nick: {user.name}</p>
       <p>Email: {user.email}</p>
