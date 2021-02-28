@@ -7,6 +7,8 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Comment = require('../models/comment');
 const nodemailer = require('nodemailer');
 const address = process.env.APP_URL || 'http://localhost:3000';
+const emailModule = require('../data/emailMessages');
+const sendEmail = require('../services/email');
 
 router.get('/user-number', (req, res) => {
 	User.countDocuments((err, data) => {
@@ -94,31 +96,8 @@ router.post('/register', async (req, res) => {
 			user.save((err) => {
 				if (err) return res.json({ success: false, error: err });
 				User.findOne({ email: email }, '-salt -hashedPassword', async (err, u) => {
-					const transporter = nodemailer.createTransport({
-						service: 'gmail',
-						auth: {
-							user: process.env.EMAIL_ADDRESS,
-							pass: process.env.EMAIL_PASSWORD
-						}
-					});
-					console.log(address);
-
-					const mailOptions = {
-						from: process.env.EMAIL_ADDRESS,
-						to: email,
-						subject: 'Activate account',
-						html: `<h1>Hi ${u.name}</h1>
-					<p>To complete the account registration, just click on this <a href=${address}/activate/${u._id}>link</a></p>`
-					};
-
-					transporter.sendMail(mailOptions, function(error, info) {
-						if (error) {
-							console.log(error);
-						} else {
-							console.log('Email sent: ' + info.response);
-						}
-					});
-
+					const mailOptions = emailModule.activateAccountEmail(email, u.name, address, u._id);
+					sendEmail(mailOptions);
 					return res.json({ success: true });
 				});
 			});
