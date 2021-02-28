@@ -96,7 +96,13 @@ router.post('/register', async (req, res) => {
 			user.save((err) => {
 				if (err) return res.json({ success: false, error: err });
 				User.findOne({ email: email }, '-salt -hashedPassword', async (err, u) => {
-					const mailOptions = emailModule.activateAccountEmail(email, u.name, address, u._id);
+					const emailData = {
+						email,
+						userName: u.name,
+						address,
+						userId: u._id
+					};
+					const mailOptions = emailModule.activateAccountEmail(emailData);
 					sendEmail(mailOptions);
 					return res.json({ success: true });
 				});

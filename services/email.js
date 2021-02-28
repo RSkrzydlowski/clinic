@@ -9,13 +9,11 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = (mailOptions) => {
-	console.log(mailOptions);
 	mailOptions.from = process.env.EMAIL_ADDRESS;
 	transporter.sendMail(mailOptions, function(error, info) {
 		if (error) {
 			console.log(error);
 		} else {
-			console.log(mailOptions);
 			console.log('Email sent: ' + info.response);
 		}
 	});

@@ -23,30 +23,15 @@ router.post('/send-email-reset-password', async (req, res) => {
 
 			reset.save((err, resetData) => {
 				if (err) return res.json({ success: false, error: err });
-				const transporter = nodemailer.createTransport({
-					service: 'gmail',
-					auth: {
-						user: process.env.EMAIL_ADDRESS,
-						pass: process.env.EMAIL_PASSWORD
-					}
-				});
-				console.log(address);
-
-				const mailOptions = {
-					from: process.env.EMAIL_ADDRESS,
-					to: email,
-					subject: 'Reset password',
-					html: `<h1>Hi ${user.name}</h1>
-        <p>It has been reported that you forgot your password to your account, to reset your password go to the link below. If that's not you, ignore this message. <a href=${address}/reset-password/${user._id}/${resetData._id}>link</a></p>`
+				const emailData = {
+					email,
+					userName: u.name,
+					address,
+					userId: u._id,
+					resetId: resetDataId
 				};
-
-				transporter.sendMail(mailOptions, function(error, info) {
-					if (error) {
-						console.log(error);
-					} else {
-						console.log('Email sent: ' + info.response);
-					}
-				});
+				const mailOptions = emailModule.resetPasswordEmail(emailData);
+				sendEmail(mailOptions);
 			});
 		} else {
 			return res.json({ success: false, error: 'Incorrect email or password' });
