@@ -37,7 +37,7 @@ const MyVisitPage = () => {
       <div className="visit_button_wrapper"><LinkButton link="/visit" text="Umów wizytę" /></div>
 
       <p className="visit_paragraph">Moje wizyty:</p>
-      {visitList.length === 0 ? "Nie masz umówionych wizyt" : visitComponent}
+      {visitList.length === 0 ? <p className="no_visit_paragraph">Nie masz umówionych wizyt</p> : visitComponent}
     </div>
    ) : <LoadingComponent isLoaded={isLoaded}/>;;
 }
