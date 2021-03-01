@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './activatePage.scss';
-import { APP_URL } from '../../data/constant';
+import { SERVER_URL } from '../../data/constant';
 import { LoadingComponent } from '../../components';
 
 const ActivatePage = ({match}) => {
@@ -10,7 +10,7 @@ const ActivatePage = ({match}) => {
 
   useEffect(() => {
     const setActivate = async() => {
-      const url = `${APP_URL}/api/users/activate/${id}`
+      const url = `${SERVER_URL}/api/users/activate/${id}`
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         const message = res.message

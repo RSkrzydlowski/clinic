@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './registerPage.scss';
-import { APP_URL } from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 import { Button, FormElement } from '../../components'
 
 const RegisterPage = () => {
@@ -9,7 +9,7 @@ const RegisterPage = () => {
 	const [ password, setPassword ] = useState('');
 
   const save = () => {
-    const url = `${APP_URL}/api/users/register`
+    const url = `${SERVER_URL}/api/users/register`
     if(name && email && password) {
       fetch(url, {
         method: "post",

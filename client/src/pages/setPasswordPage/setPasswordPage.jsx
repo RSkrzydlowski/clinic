@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import './setPasswordPage.scss'
 import { Button, FormElement } from '../../components'
-import { APP_URL } from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 import { AuthContext } from '../../authentication';
 
 const SetPasswordPage = () => {
@@ -12,7 +12,7 @@ const SetPasswordPage = () => {
 
   const changePassword = () => {
     if(oldPassword && newPassword && repeatNewPassword && newPassword === repeatNewPassword && oldPassword !== newPassword) {
-      const url = `${APP_URL}/api/users/set-password`
+      const url = `${SERVER_URL}/api/users/set-password`
         fetch(url, {
           method: "post",
           headers: { "Content-Type": "application/json" },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './myAccountPage.scss'
 import { LinkButton, LoadingComponent } from '../../components';
-import {APP_URL} from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 import { AuthContext } from '../../authentication';
 
 const MyAccountPage = () => {
@@ -11,7 +11,7 @@ const MyAccountPage = () => {
 
   useEffect(() => {
     const fetchDoctor = async() => {
-      const url = `${APP_URL}/api/users/${currentUser.id}`
+      const url = `${SERVER_URL}/api/users/${currentUser.id}`
 
 			await fetch(url).then(async res => {
 			res.json().then(res => {

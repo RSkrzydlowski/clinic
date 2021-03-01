@@ -1,9 +1,9 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import React from 'react';
-import { APP_URL } from '../data/constant';
+import { SERVER_URL } from '../data/constant';
 
 const signIn = async ({ email, password }) => {
-	const url = `${APP_URL}/api/users/login`;
+	const url = `${SERVER_URL}/api/users/login`;
 	fetch(url, {
 		method: 'post',
 		headers: { 'Content-Type': 'application/json' },
@@ -25,12 +25,12 @@ const signIn = async ({ email, password }) => {
 			};
 			localStorage.setItem('currentUser', JSON.stringify(currentUser));
 			onAuthStateChangedCallback(currentUser);
-			window.location.href = 'http://localhost:3000/me';
+			window.location.href = 'http://localhost:3000/my-visit';
 		}
 	});
 };
 const refresh = async (currentUser) => {
-	const res = await fetch(`${APP_URL}/api/users/refresh`, {
+	const res = await fetch(`${SERVER_URL}/api/users/refresh`, {
 		headers: { Authorization: currentUser.bearer }
 	});
 	if (res.status === 401) {

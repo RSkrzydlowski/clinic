@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './visitPage.scss'
-import { APP_URL } from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 import { DoctorVisitElement, Button, LoadingComponent } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import Calendar from 'react-calendar';
@@ -19,7 +19,7 @@ const VisitPage = () => {
 
   useEffect(() => {
     const fetchAvailableDoctor = async() => {
-      const url = `${APP_URL}/api/visits/available-visit/${dateInMilliseconds}`
+      const url = `${SERVER_URL}/api/visits/available-visit/${dateInMilliseconds}`
 			await fetch(url).then(async res => {
 			res.json().then(res => {
         if(res.success) {
@@ -44,7 +44,7 @@ const VisitPage = () => {
   ))
 
   const addVisit = () => {
-    const url = `${APP_URL}/api/visits/add`
+    const url = `${SERVER_URL}/api/visits/add`
     const {visitHour, doctorId} = visitData;
     const visitHourArray = visitHour.split(" - ")
     if(visitHour && doctorId) {

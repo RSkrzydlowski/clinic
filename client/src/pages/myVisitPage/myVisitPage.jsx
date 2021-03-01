@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './myVisitPage.scss'
-import { APP_URL, VISIT_HOURS} from '../../data/constant'
+import { SERVER_URL, VISIT_HOURS} from '../../data/constant'
 import { LinkButton, VisitElement, LoadingComponent } from '../../components'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authentication';
@@ -14,7 +14,7 @@ const MyVisitPage = () => {
 
   useEffect(() => {
   const fetchUserVisits = async() => {
-    const url = `${APP_URL}/api/visits/${currentUser.id}`
+    const url = `${SERVER_URL}/api/visits/${currentUser.id}`
 
     await fetch(url).then(async res => {
     res.json().then(res => {

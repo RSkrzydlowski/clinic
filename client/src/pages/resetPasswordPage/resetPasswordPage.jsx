@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './resetPasswordPage.scss'
 import { Button, FormElement } from '../../components'
-import { APP_URL } from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 
 const ResetPasswordPage = () => {
   const [ email, setEmail ] = useState('');
 
   const send = () => {
     if(email) {
-      const url = `${APP_URL}/api/reset-passwords/send-email-reset-password`
+      const url = `${SERVER_URL}/api/reset-passwords/send-email-reset-password`
       fetch(url, {
         method: "post",
         headers: { "Content-Type": "application/json" },

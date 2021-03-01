@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import './doctorPage.scss';
-import { APP_URL } from '../../data/constant';
+import { SERVER_URL } from '../../data/constant';
 import { AddCommentSection, CommentElement, LoadingComponent } from '../../components';
 import { AuthContext } from '../../authentication';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +21,7 @@ const DoctorPage = ({match}) => {
 
   useEffect(() => {
     const fetchDoctor = async() => {
-      const url = `${APP_URL}/api/users/${id}`
+      const url = `${SERVER_URL}/api/users/${id}`
 
 			await fetch(url).then(async res => {
 			res.json().then(res => {
@@ -39,7 +39,7 @@ const DoctorPage = ({match}) => {
 
   useEffect(() => {
   const fetchDoctorComments = async() => {
-    const url = `${APP_URL}/api/comments/${id}`
+    const url = `${SERVER_URL}/api/comments/${id}`
 
     await fetch(url).then(async res => {
     res.json().then(res => {
