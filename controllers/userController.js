@@ -68,13 +68,19 @@ router.get('/doctors', (req, res) => {
 
 router.post('/register', async (req, res) => {
 	const { name, email, password } = req.body;
+	const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 	if (!name || !email || !password) {
 		return res.json({
 			success: false,
 			error: 'Please provide email and password'
 		});
 	}
-
+	if (!emailRegexp(email)) {
+		return res.json({
+			success: false,
+			error: 'Please provide correct email'
+		});
+	}
 	User.findOne({ email: email }, async (err, u) => {
 		if (err) return res.json({ success: false, error: err });
 		if (u) {
