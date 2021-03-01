@@ -24,7 +24,7 @@ const ActivatePage = ({match}) => {
   }, []);
 
   return isLoaded ? (
-    <div>
+    <div className="activate_page">
       {text}
     </div>
    ) : <LoadingComponent isLoaded={isLoaded}/>;;

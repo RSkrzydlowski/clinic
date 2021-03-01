@@ -16,13 +16,13 @@ const TopScreen = () => {
 				<Route path="/visit" component={VisitPage} />
 				<Route path="/doctor/:id" component={DoctorPage} />
 				<Route path="/doctor-list/" component={DoctorListPage} />
-				<Route path="/activate/:id" component={ActivatePage} />
 				<Route path="/my-account" component={MyAccountPage} />
 				<Route path="/set-password" component={SetPasswordPage} />
 			</div>) : (<div className="top_display_not_logged">
 				<Route path="/sign-up" component={RegisterPage} />
 				<Route path="/sign-in" component={LoginPage} />
 				<Route path="/reset-password" component={ResetPasswordPage} />
+				<Route path="/activate/:id" component={ActivatePage} />
 			</div>) }
 			{/* <Footer /> */}
 			</div>
