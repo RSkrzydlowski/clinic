@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './addCommentSection.scss';
-import { APP_URL } from '../../data/constant'
+import { SERVER_URL } from '../../data/constant'
 import Rating from '../rating'
 import { Button } from '../../components'
 
@@ -14,7 +14,7 @@ const AddCommentSection = (props) => {
   const [value, setValue] = useState('');
 
   const addComment = () => {
-    const url = `${APP_URL}/api/comments/add`
+    const url = `${SERVER_URL}/api/comments/add`
     if(comment || rate) {
       fetch(url, {
         method: "post",
